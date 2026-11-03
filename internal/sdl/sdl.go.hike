@@ -1,0 +1,1508 @@
+// Code generated from SDL3 headers. DO NOT EDIT.
+package sdl
+
+extern func SDL_abs(arg0 int) int
+extern func SDL_acos(arg0 float64) float64
+extern func SDL_acosf(arg0 float32) float32
+extern func SDL_AcquireCameraFrame(arg0 *byte, arg1 *byte) *byte
+extern func SDL_AcquireGPUCommandBuffer(arg0 *byte) *byte
+extern func SDL_AcquireGPUSwapchainTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_AddAtomicInt(arg0 *byte, arg1 int) int
+extern func SDL_AddAtomicU32(arg0 *byte, arg1 int) uint32
+extern func SDL_AddEventWatch(arg0 int, arg1 *byte) bool
+extern func SDL_AddGamepadMapping(arg0 cstring) int
+extern func SDL_AddGamepadMappingsFromFile(arg0 cstring) int
+extern func SDL_AddGamepadMappingsFromIO(arg0 *byte, arg1 bool) int
+extern func SDL_AddHintCallback(arg0 cstring, arg1 int, arg2 *byte) bool
+extern func SDL_AddSurfaceAlternateImage(arg0 *byte, arg1 *byte) bool
+extern func SDL_AddTimer(arg0 uint32, arg1 int, arg2 *byte) uint64
+extern func SDL_AddTimerNS(arg0 uint64, arg1 int, arg2 *byte) uint64
+extern func SDL_AddVulkanRenderSemaphores(arg0 *byte, arg1 uint32, arg2 int64, arg3 int64) bool
+extern func SDL_aligned_alloc_zero(arg0 uint64, arg1 uint64) *byte
+extern func SDL_aligned_alloc(arg0 uint64, arg1 uint64) *byte
+extern func SDL_aligned_free(arg0 *byte)
+extern func SDL_asin(arg0 float64) float64
+extern func SDL_asinf(arg0 float32) float32
+extern func SDL_asprintf(arg0 cstring, arg1 cstring, arg2 int, arg3 int) int
+extern func SDL_AsyncIOFromFile(arg0 cstring, arg1 cstring) *byte
+extern func SDL_atan(arg0 float64) float64
+extern func SDL_atan2(arg0 float64, arg1 float64) float64
+extern func SDL_atan2f(arg0 float32, arg1 float32) float32
+extern func SDL_atanf(arg0 float32) float32
+extern func SDL_atof(arg0 cstring) float64
+extern func SDL_atoi(arg0 cstring) int
+extern func SDL_AttachVirtualJoystick(arg0 *byte) uint64
+extern func SDL_AudioDevicePaused(arg0 uint64) bool
+extern func SDL_AudioStreamDevicePaused(arg0 *byte) bool
+extern func SDL_BeginGPUComputePass(arg0 *byte, arg1 *byte, arg2 uint32, arg3 *byte, arg4 uint32) *byte
+extern func SDL_BeginGPUCopyPass(arg0 *byte) *byte
+extern func SDL_BeginGPURenderPass(arg0 *byte, arg1 *byte, arg2 uint32, arg3 *byte) *byte
+extern func SDL_BindAudioStream(arg0 uint64, arg1 *byte) bool
+extern func SDL_BindAudioStreams(arg0 uint64, arg1 *byte, arg2 int) bool
+extern func SDL_BindGPUComputePipeline(arg0 *byte, arg1 *byte)
+extern func SDL_BindGPUComputeSamplers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUComputeStorageBuffers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUComputeStorageTextures(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUFragmentSamplers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUFragmentStorageBuffers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUFragmentStorageTextures(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUGraphicsPipeline(arg0 *byte, arg1 *byte)
+extern func SDL_BindGPUIndexBuffer(arg0 *byte, arg1 *byte, arg2 int)
+extern func SDL_BindGPUVertexBuffers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUVertexSamplers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUVertexStorageBuffers(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BindGPUVertexStorageTextures(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_BlitGPUTexture(arg0 *byte, arg1 *byte)
+extern func SDL_BlitSurface(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_BlitSurface9Grid(arg0 *byte, arg1 *byte, arg2 int, arg3 int, arg4 int, arg5 int, arg6 float32, arg7 int, arg8 *byte, arg9 *byte) bool
+extern func SDL_BlitSurfaceScaled(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 int) bool
+extern func SDL_BlitSurfaceTiled(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_BlitSurfaceTiledWithScale(arg0 *byte, arg1 *byte, arg2 float32, arg3 int, arg4 *byte, arg5 *byte) bool
+extern func SDL_BlitSurfaceUnchecked(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_BlitSurfaceUncheckedScaled(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 int) bool
+extern func SDL_BroadcastCondition(arg0 *byte)
+extern func SDL_bsearch_r(arg0 *byte, arg1 *byte, arg2 uint64, arg3 uint64, arg4 int, arg5 *byte) *byte
+extern func SDL_bsearch(arg0 *byte, arg1 *byte, arg2 uint64, arg3 uint64, arg4 int) *byte
+extern func SDL_CalculateGPUTextureFormatSize(arg0 int, arg1 uint32, arg2 uint32, arg3 uint32) uint32
+extern func SDL_calloc(arg0 uint64, arg1 uint64) *byte
+extern func SDL_CancelGPUCommandBuffer(arg0 *byte) bool
+extern func SDL_CaptureMouse(arg0 bool) bool
+extern func SDL_ceil(arg0 float64) float64
+extern func SDL_ceilf(arg0 float32) float32
+extern func SDL_ClaimWindowForGPUDevice(arg0 *byte, arg1 *byte) bool
+extern func SDL_CleanupTLS()
+extern func SDL_ClearAudioStream(arg0 *byte) bool
+extern func SDL_ClearClipboardData() bool
+extern func SDL_ClearComposition(arg0 *byte) bool
+extern func SDL_ClearError() bool
+extern func SDL_ClearProperty(arg0 uint64, arg1 cstring) bool
+extern func SDL_ClearSurface(arg0 *byte, arg1 float32, arg2 float32, arg3 float32, arg4 float32) bool
+extern func SDL_ClickTrayEntry(arg0 *byte)
+extern func SDL_CloseAsyncIO(arg0 *byte, arg1 bool, arg2 *byte, arg3 *byte) bool
+extern func SDL_CloseAudioDevice(arg0 uint64)
+extern func SDL_CloseCamera(arg0 *byte)
+extern func SDL_CloseGamepad(arg0 *byte)
+extern func SDL_CloseHaptic(arg0 *byte)
+extern func SDL_CloseIO(arg0 *byte) bool
+extern func SDL_CloseJoystick(arg0 *byte)
+extern func SDL_CloseSensor(arg0 *byte)
+extern func SDL_CloseStorage(arg0 *byte) bool
+extern func SDL_CompareAndSwapAtomicInt(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_CompareAndSwapAtomicPointer(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_CompareAndSwapAtomicU32(arg0 *byte, arg1 uint32, arg2 uint32) bool
+extern func SDL_ComposeCustomBlendMode(arg0 int, arg1 int, arg2 int, arg3 int, arg4 int, arg5 int) int
+extern func SDL_ConvertAudioSamples(arg0 *byte, arg1 *byte, arg2 int, arg3 *byte, arg4 *byte, arg5 *byte) bool
+extern func SDL_ConvertEventToRenderCoordinates(arg0 *byte, arg1 *byte) bool
+extern func SDL_ConvertPixels(arg0 int, arg1 int, arg2 int, arg3 *byte, arg4 int, arg5 int, arg6 *byte, arg7 int) bool
+extern func SDL_ConvertPixelsAndColorspace(arg0 int, arg1 int, arg2 int, arg3 int, arg4 uint64, arg5 *byte, arg6 int, arg7 int, arg8 int, arg9 uint64, arg10 *byte, arg11 int) bool
+extern func SDL_ConvertSurface(arg0 *byte, arg1 int) *byte
+extern func SDL_ConvertSurfaceAndColorspace(arg0 *byte, arg1 int, arg2 *byte, arg3 int, arg4 uint64) *byte
+extern func SDL_CopyFile(arg0 cstring, arg1 cstring) bool
+extern func SDL_CopyGPUBufferToBuffer(arg0 *byte, arg1 *byte, arg2 *byte, arg3 uint32, arg4 bool)
+extern func SDL_CopyGPUTextureToTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 uint32, arg4 uint32, arg5 uint32, arg6 bool)
+extern func SDL_CopyProperties(arg0 uint64, arg1 uint64) bool
+extern func SDL_copysign(arg0 float64, arg1 float64) float64
+extern func SDL_copysignf(arg0 float32, arg1 float32) float32
+extern func SDL_CopyStorageFile(arg0 *byte, arg1 cstring, arg2 cstring) bool
+extern func SDL_cos(arg0 float64) float64
+extern func SDL_cosf(arg0 float32) float32
+extern func SDL_crc16(arg0 uint16, arg1 *byte, arg2 uint64) uint16
+extern func SDL_crc32(arg0 uint32, arg1 *byte, arg2 uint64) uint32
+extern func SDL_CreateAnimatedCursor(arg0 *byte, arg1 int, arg2 int, arg3 int) *byte
+extern func SDL_CreateAsyncIOQueue() *byte
+extern func SDL_CreateAudioStream(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateColorCursor(arg0 *byte, arg1 int, arg2 int) *byte
+extern func SDL_CreateCondition() *byte
+extern func SDL_CreateCursor(arg0 *byte, arg1 *byte, arg2 int, arg3 int, arg4 int, arg5 int) *byte
+extern func SDL_CreateDirectory(arg0 cstring) bool
+extern func SDL_CreateEnvironment(arg0 bool) *byte
+extern func SDL_CreateGPUBuffer(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPUComputePipeline(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPUDevice(arg0 int, arg1 bool, arg2 cstring) *byte
+extern func SDL_CreateGPUDeviceWithProperties(arg0 uint64) *byte
+extern func SDL_CreateGPUGraphicsPipeline(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPURenderer(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPURenderState(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPUSampler(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPUShader(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPUTexture(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateGPUTransferBuffer(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateHapticEffect(arg0 *byte, arg1 *byte) uint64
+extern func SDL_CreateMutex() *byte
+extern func SDL_CreatePalette(arg0 int) *byte
+extern func SDL_CreatePopupWindow(arg0 *byte, arg1 int, arg2 int, arg3 int, arg4 int, arg5 int) *byte
+extern func SDL_CreateProcess(arg0 cstring, arg1 bool) *byte
+extern func SDL_CreateProcessWithProperties(arg0 uint64) *byte
+extern func SDL_CreateProperties() uint64
+extern func SDL_CreateRenderer(arg0 *byte, arg1 cstring) *byte
+extern func SDL_CreateRendererWithProperties(arg0 uint64) *byte
+extern func SDL_CreateRWLock() *byte
+extern func SDL_CreateSemaphore(arg0 uint32) *byte
+extern func SDL_CreateSoftwareRenderer(arg0 *byte) *byte
+extern func SDL_CreateStorageDirectory(arg0 *byte, arg1 cstring) bool
+extern func SDL_CreateSurface(arg0 int, arg1 int, arg2 int) *byte
+extern func SDL_CreateSurfaceFrom(arg0 int, arg1 int, arg2 int, arg3 *byte, arg4 int) *byte
+extern func SDL_CreateSurfacePalette(arg0 *byte) *byte
+extern func SDL_CreateSystemCursor(arg0 int) *byte
+extern func SDL_CreateTexture(arg0 *byte, arg1 int, arg2 int, arg3 int, arg4 int) *byte
+extern func SDL_CreateTextureFromSurface(arg0 *byte, arg1 *byte) *byte
+extern func SDL_CreateTextureWithProperties(arg0 *byte, arg1 uint64) *byte
+extern func SDL_CreateThreadRuntime(arg0 int, arg1 cstring, arg2 *byte, arg3 int, arg4 int) *byte
+extern func SDL_CreateThreadWithPropertiesRuntime(arg0 uint64, arg1 int, arg2 int) *byte
+extern func SDL_CreateTray(arg0 *byte, arg1 cstring) *byte
+extern func SDL_CreateTrayMenu(arg0 *byte) *byte
+extern func SDL_CreateTraySubmenu(arg0 *byte) *byte
+extern func SDL_CreateTrayWithProperties(arg0 uint64) *byte
+extern func SDL_CreateWindow(arg0 cstring, arg1 int, arg2 int, arg3 int) *byte
+extern func SDL_CreateWindowAndRenderer(arg0 cstring, arg1 int, arg2 int, arg3 int, arg4 *byte, arg5 *byte) bool
+extern func SDL_CreateWindowWithProperties(arg0 uint64) *byte
+extern func SDL_CursorVisible() bool
+extern func SDL_DateTimeToTime(arg0 *byte, arg1 *byte) bool
+extern func SDL_Delay(arg0 uint32)
+extern func SDL_DelayNS(arg0 uint64)
+extern func SDL_DelayPrecise(arg0 uint64)
+extern func SDL_DestroyAsyncIOQueue(arg0 *byte)
+extern func SDL_DestroyAudioStream(arg0 *byte)
+extern func SDL_DestroyCondition(arg0 *byte)
+extern func SDL_DestroyCursor(arg0 *byte)
+extern func SDL_DestroyEnvironment(arg0 *byte)
+extern func SDL_DestroyGPUDevice(arg0 *byte)
+extern func SDL_DestroyGPURenderState(arg0 *byte)
+extern func SDL_DestroyHapticEffect(arg0 *byte, arg1 uint64)
+extern func SDL_DestroyMutex(arg0 *byte)
+extern func SDL_DestroyPalette(arg0 *byte)
+extern func SDL_DestroyProcess(arg0 *byte)
+extern func SDL_DestroyProperties(arg0 uint64)
+extern func SDL_DestroyRenderer(arg0 *byte)
+extern func SDL_DestroyRWLock(arg0 *byte)
+extern func SDL_DestroySemaphore(arg0 *byte)
+extern func SDL_DestroySurface(arg0 *byte)
+extern func SDL_DestroyTexture(arg0 *byte)
+extern func SDL_DestroyTray(arg0 *byte)
+extern func SDL_DestroyWindow(arg0 *byte)
+extern func SDL_DestroyWindowSurface(arg0 *byte) bool
+extern func SDL_DetachThread(arg0 *byte)
+extern func SDL_DetachVirtualJoystick(arg0 uint64) bool
+extern func SDL_DisableScreenSaver() bool
+extern func SDL_DispatchGPUCompute(arg0 *byte, arg1 uint32, arg2 uint32, arg3 uint32)
+extern func SDL_DispatchGPUComputeIndirect(arg0 *byte, arg1 *byte, arg2 uint32)
+extern func SDL_DownloadFromGPUBuffer(arg0 *byte, arg1 *byte, arg2 *byte)
+extern func SDL_DownloadFromGPUTexture(arg0 *byte, arg1 *byte, arg2 *byte)
+extern func SDL_DrawGPUIndexedPrimitives(arg0 *byte, arg1 uint32, arg2 uint32, arg3 uint32, arg4 int32, arg5 uint32)
+extern func SDL_DrawGPUIndexedPrimitivesIndirect(arg0 *byte, arg1 *byte, arg2 uint32, arg3 uint32)
+extern func SDL_DrawGPUPrimitives(arg0 *byte, arg1 uint32, arg2 uint32, arg3 uint32, arg4 uint32)
+extern func SDL_DrawGPUPrimitivesIndirect(arg0 *byte, arg1 *byte, arg2 uint32, arg3 uint32)
+extern func SDL_DuplicateSurface(arg0 *byte) *byte
+extern func SDL_EGL_GetCurrentConfig() int
+extern func SDL_EGL_GetCurrentDisplay() int
+extern func SDL_EGL_GetProcAddress(arg0 cstring) int
+extern func SDL_EGL_GetWindowSurface(arg0 *byte) int
+extern func SDL_EGL_SetAttributeCallbacks(arg0 int, arg1 int, arg2 int, arg3 *byte)
+extern func SDL_EnableScreenSaver() bool
+extern func SDL_EncodeURL(arg0 cstring, arg1 cstring) cstring
+extern func SDL_EndGPUComputePass(arg0 *byte)
+extern func SDL_EndGPUCopyPass(arg0 *byte)
+extern func SDL_EndGPURenderPass(arg0 *byte)
+extern func SDL_EnumerateDirectory(arg0 cstring, arg1 int, arg2 *byte) bool
+extern func SDL_EnumerateProperties(arg0 uint64, arg1 int, arg2 *byte) bool
+extern func SDL_EnumerateStorageDirectory(arg0 *byte, arg1 cstring, arg2 int, arg3 *byte) bool
+extern func SDL_EventEnabled(arg0 uint32) bool
+extern func SDL_exp(arg0 float64) float64
+extern func SDL_expf(arg0 float32) float32
+extern func SDL_fabs(arg0 float64) float64
+extern func SDL_fabsf(arg0 float32) float32
+extern func SDL_FillSurfaceRect(arg0 *byte, arg1 *byte, arg2 uint32) bool
+extern func SDL_FillSurfaceRects(arg0 *byte, arg1 *byte, arg2 int, arg3 uint32) bool
+extern func SDL_FilterEvents(arg0 int, arg1 *byte)
+extern func SDL_FlashWindow(arg0 *byte, arg1 int) bool
+extern func SDL_FlipSurface(arg0 *byte, arg1 int) bool
+extern func SDL_floor(arg0 float64) float64
+extern func SDL_floorf(arg0 float32) float32
+extern func SDL_FlushAudioStream(arg0 *byte) bool
+extern func SDL_FlushEvent(arg0 uint32)
+extern func SDL_FlushEvents(arg0 uint32, arg1 uint32)
+extern func SDL_FlushIO(arg0 *byte) bool
+extern func SDL_FlushRenderer(arg0 *byte) bool
+extern func SDL_fmod(arg0 float64, arg1 float64) float64
+extern func SDL_fmodf(arg0 float32, arg1 float32) float32
+extern func SDL_free(arg0 *byte)
+extern func SDL_GamepadConnected(arg0 *byte) bool
+extern func SDL_GamepadEventsEnabled() bool
+extern func SDL_GamepadHasAxis(arg0 *byte, arg1 int) bool
+extern func SDL_GamepadHasButton(arg0 *byte, arg1 int) bool
+extern func SDL_GamepadHasCapSense(arg0 *byte, arg1 int) bool
+extern func SDL_GamepadHasSensor(arg0 *byte, arg1 int) bool
+extern func SDL_GamepadSensorEnabled(arg0 *byte, arg1 int) bool
+extern func SDL_GenerateMipmapsForGPUTexture(arg0 *byte, arg1 *byte)
+extern func SDL_GetAppMetadataProperty(arg0 cstring) cstring
+extern func SDL_GetAssertionHandler(arg0 *byte) int
+extern func SDL_GetAssertionReport() *byte
+extern func SDL_GetAsyncIOResult(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetAsyncIOSize(arg0 *byte) int64
+extern func SDL_GetAtomicInt(arg0 *byte) int
+extern func SDL_GetAtomicPointer(arg0 *byte) *byte
+extern func SDL_GetAtomicU32(arg0 *byte) uint32
+extern func SDL_GetAudioDeviceChannelMap(arg0 uint64, arg1 *byte) *byte
+extern func SDL_GetAudioDeviceFormat(arg0 uint64, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetAudioDeviceGain(arg0 uint64) float32
+extern func SDL_GetAudioDeviceName(arg0 uint64) cstring
+extern func SDL_GetAudioDeviceProperties(arg0 uint64) uint64
+extern func SDL_GetAudioDriver(arg0 int) cstring
+extern func SDL_GetAudioFormatName(arg0 int) cstring
+extern func SDL_GetAudioPlaybackDevices(arg0 *byte) *byte
+extern func SDL_GetAudioRecordingDevices(arg0 *byte) *byte
+extern func SDL_GetAudioStreamAvailable(arg0 *byte) int
+extern func SDL_GetAudioStreamData(arg0 *byte, arg1 *byte, arg2 int) int
+extern func SDL_GetAudioStreamDevice(arg0 *byte) uint64
+extern func SDL_GetAudioStreamFormat(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetAudioStreamFrequencyRatio(arg0 *byte) float32
+extern func SDL_GetAudioStreamGain(arg0 *byte) float32
+extern func SDL_GetAudioStreamInputChannelMap(arg0 *byte, arg1 *byte) *byte
+extern func SDL_GetAudioStreamOutputChannelMap(arg0 *byte, arg1 *byte) *byte
+extern func SDL_GetAudioStreamProperties(arg0 *byte) uint64
+extern func SDL_GetAudioStreamQueued(arg0 *byte) int
+extern func SDL_GetBasePath() cstring
+extern func SDL_GetBooleanProperty(arg0 uint64, arg1 cstring, arg2 bool) bool
+extern func SDL_GetCameraDriver(arg0 int) cstring
+extern func SDL_GetCameraFormat(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetCameraID(arg0 *byte) uint64
+extern func SDL_GetCameraName(arg0 uint64) cstring
+extern func SDL_GetCameraPermissionState(arg0 *byte) int
+extern func SDL_GetCameraPosition(arg0 uint64) int
+extern func SDL_GetCameraProperties(arg0 *byte) uint64
+extern func SDL_GetCameras(arg0 *byte) *byte
+extern func SDL_GetCameraSupportedFormats(arg0 uint64, arg1 *byte) *byte
+extern func SDL_GetClipboardData(arg0 cstring, arg1 *byte) *byte
+extern func SDL_GetClipboardMimeTypes(arg0 *byte) cstring
+extern func SDL_GetClipboardText() cstring
+extern func SDL_GetClosestFullscreenDisplayMode(arg0 uint64, arg1 int, arg2 int, arg3 float32, arg4 bool, arg5 *byte) bool
+extern func SDL_GetCPUCacheLineSize() int
+extern func SDL_GetCurrentAudioDriver() cstring
+extern func SDL_GetCurrentCameraDriver() cstring
+extern func SDL_GetCurrentDirectory() cstring
+extern func SDL_GetCurrentDisplayMode(arg0 uint64) *byte
+extern func SDL_GetCurrentDisplayOrientation(arg0 uint64) int
+extern func SDL_GetCurrentRenderOutputSize(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetCurrentThreadID() uint64
+extern func SDL_GetCurrentTime(arg0 *byte) bool
+extern func SDL_GetCurrentVideoDriver() cstring
+extern func SDL_GetCursor() *byte
+extern func SDL_GetDateTimeLocalePreferences(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetDayOfWeek(arg0 int, arg1 int, arg2 int) int
+extern func SDL_GetDayOfYear(arg0 int, arg1 int, arg2 int) int
+extern func SDL_GetDaysInMonth(arg0 int, arg1 int) int
+extern func SDL_GetDefaultAssertionHandler() int
+extern func SDL_GetDefaultCursor() *byte
+extern func SDL_GetDefaultLogOutputFunction() int
+extern func SDL_GetDefaultTextureScaleMode(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetDesktopDisplayMode(arg0 uint64) *byte
+extern func SDL_GetDeviceFormFactor() int
+extern func SDL_GetDeviceFormFactorName(arg0 int) cstring
+extern func SDL_GetDirect3D9AdapterIndex(arg0 uint64) int
+extern func SDL_GetDisplayBounds(arg0 uint64, arg1 *byte) bool
+extern func SDL_GetDisplayContentScale(arg0 uint64) float32
+extern func SDL_GetDisplayForPoint(arg0 *byte) uint64
+extern func SDL_GetDisplayForRect(arg0 *byte) uint64
+extern func SDL_GetDisplayForWindow(arg0 *byte) uint64
+extern func SDL_GetDisplayName(arg0 uint64) cstring
+extern func SDL_GetDisplayProperties(arg0 uint64) uint64
+extern func SDL_GetDisplays(arg0 *byte) *byte
+extern func SDL_GetDisplayUsableBounds(arg0 uint64, arg1 *byte) bool
+extern func SDL_GetDXGIOutputInfo(arg0 uint64, arg1 *byte, arg2 *byte) bool
+extern func SDL_getenv_unsafe(arg0 cstring) cstring
+extern func SDL_getenv(arg0 cstring) cstring
+extern func SDL_GetEnvironment() *byte
+extern func SDL_GetEnvironmentVariable(arg0 *byte, arg1 cstring) cstring
+extern func SDL_GetEnvironmentVariables(arg0 *byte) cstring
+extern func SDL_GetError() cstring
+extern func SDL_GetEventDescription(arg0 *byte, arg1 cstring, arg2 int) int
+extern func SDL_GetEventFilter(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetFloatProperty(arg0 uint64, arg1 cstring, arg2 float32) float32
+extern func SDL_GetFullscreenDisplayModes(arg0 uint64, arg1 *byte) *byte
+extern func SDL_GetGamepadAppleSFSymbolsNameForAxis(arg0 *byte, arg1 int) cstring
+extern func SDL_GetGamepadAppleSFSymbolsNameForButton(arg0 *byte, arg1 int) cstring
+extern func SDL_GetGamepadAxis(arg0 *byte, arg1 int) int16
+extern func SDL_GetGamepadAxisFromString(arg0 cstring) int
+extern func SDL_GetGamepadBindings(arg0 *byte, arg1 *byte) *byte
+extern func SDL_GetGamepadButton(arg0 *byte, arg1 int) bool
+extern func SDL_GetGamepadButtonFromString(arg0 cstring) int
+extern func SDL_GetGamepadButtonLabel(arg0 *byte, arg1 int) int
+extern func SDL_GetGamepadButtonLabelForType(arg0 int, arg1 int) int
+extern func SDL_GetGamepadCapSense(arg0 *byte, arg1 int) bool
+extern func SDL_GetGamepadConnectionState(arg0 *byte) int
+extern func SDL_GetGamepadFirmwareVersion(arg0 *byte) uint16
+extern func SDL_GetGamepadFromID(arg0 uint64) *byte
+extern func SDL_GetGamepadFromPlayerIndex(arg0 int) *byte
+extern func SDL_GetGamepadGUIDForID(arg0 uint64) uint64
+extern func SDL_GetGamepadID(arg0 *byte) uint64
+extern func SDL_GetGamepadJoystick(arg0 *byte) *byte
+extern func SDL_GetGamepadMapping(arg0 *byte) cstring
+extern func SDL_GetGamepadMappingForGUID(arg0 uint64) cstring
+extern func SDL_GetGamepadMappingForID(arg0 uint64) cstring
+extern func SDL_GetGamepadMappings(arg0 *byte) cstring
+extern func SDL_GetGamepadName(arg0 *byte) cstring
+extern func SDL_GetGamepadNameForID(arg0 uint64) cstring
+extern func SDL_GetGamepadPath(arg0 *byte) cstring
+extern func SDL_GetGamepadPathForID(arg0 uint64) cstring
+extern func SDL_GetGamepadPlayerIndex(arg0 *byte) int
+extern func SDL_GetGamepadPlayerIndexForID(arg0 uint64) int
+extern func SDL_GetGamepadPowerInfo(arg0 *byte, arg1 *byte) int
+extern func SDL_GetGamepadProduct(arg0 *byte) uint16
+extern func SDL_GetGamepadProductForID(arg0 uint64) uint16
+extern func SDL_GetGamepadProductVersion(arg0 *byte) uint16
+extern func SDL_GetGamepadProductVersionForID(arg0 uint64) uint16
+extern func SDL_GetGamepadProperties(arg0 *byte) uint64
+extern func SDL_GetGamepads(arg0 *byte) *byte
+extern func SDL_GetGamepadSensorData(arg0 *byte, arg1 int, arg2 *byte, arg3 int) bool
+extern func SDL_GetGamepadSensorDataRate(arg0 *byte, arg1 int) float32
+extern func SDL_GetGamepadSerial(arg0 *byte) cstring
+extern func SDL_GetGamepadSteamHandle(arg0 *byte) uint64
+extern func SDL_GetGamepadStringForAxis(arg0 int) cstring
+extern func SDL_GetGamepadStringForButton(arg0 int) cstring
+extern func SDL_GetGamepadStringForType(arg0 int) cstring
+extern func SDL_GetGamepadTouchpadFinger(arg0 *byte, arg1 int, arg2 int, arg3 *byte, arg4 *byte, arg5 *byte, arg6 *byte) bool
+extern func SDL_GetGamepadType(arg0 *byte) int
+extern func SDL_GetGamepadTypeForID(arg0 uint64) int
+extern func SDL_GetGamepadTypeFromString(arg0 cstring) int
+extern func SDL_GetGamepadVendor(arg0 *byte) uint16
+extern func SDL_GetGamepadVendorForID(arg0 uint64) uint16
+extern func SDL_GetGlobalMouseState(arg0 *byte, arg1 *byte) int
+extern func SDL_GetGlobalProperties() uint64
+extern func SDL_GetGPUDeviceDriver(arg0 *byte) cstring
+extern func SDL_GetGPUDeviceProperties(arg0 *byte) uint64
+extern func SDL_GetGPUDriver(arg0 int) cstring
+extern func SDL_GetGPURendererDevice(arg0 *byte) *byte
+extern func SDL_GetGPUShaderFormats(arg0 *byte) int
+extern func SDL_GetGPUSwapchainTextureFormat(arg0 *byte, arg1 *byte) int
+extern func SDL_GetGPUTextureFormatFromPixelFormat(arg0 int) int
+extern func SDL_GetGrabbedWindow() *byte
+extern func SDL_GetHapticEffectStatus(arg0 *byte, arg1 uint64) bool
+extern func SDL_GetHapticFeatures(arg0 *byte) uint32
+extern func SDL_GetHapticFromID(arg0 uint64) *byte
+extern func SDL_GetHapticID(arg0 *byte) uint64
+extern func SDL_GetHapticName(arg0 *byte) cstring
+extern func SDL_GetHapticNameForID(arg0 uint64) cstring
+extern func SDL_GetHaptics(arg0 *byte) *byte
+extern func SDL_GetHint(arg0 cstring) cstring
+extern func SDL_GetHintBoolean(arg0 cstring, arg1 bool) bool
+extern func SDL_GetIOProperties(arg0 *byte) uint64
+extern func SDL_GetIOSize(arg0 *byte) int64
+extern func SDL_GetIOStatus(arg0 *byte) int
+extern func SDL_GetJoystickAxis(arg0 *byte, arg1 int) int16
+extern func SDL_GetJoystickAxisInitialState(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_GetJoystickBall(arg0 *byte, arg1 int, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetJoystickButton(arg0 *byte, arg1 int) bool
+extern func SDL_GetJoystickConnectionState(arg0 *byte) int
+extern func SDL_GetJoystickFirmwareVersion(arg0 *byte) uint16
+extern func SDL_GetJoystickFromID(arg0 uint64) *byte
+extern func SDL_GetJoystickFromPlayerIndex(arg0 int) *byte
+extern func SDL_GetJoystickGUID(arg0 *byte) uint64
+extern func SDL_GetJoystickGUIDForID(arg0 uint64) uint64
+extern func SDL_GetJoystickGUIDInfo(arg0 uint64, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte)
+extern func SDL_GetJoystickHat(arg0 *byte, arg1 int) uint8
+extern func SDL_GetJoystickID(arg0 *byte) uint64
+extern func SDL_GetJoystickName(arg0 *byte) cstring
+extern func SDL_GetJoystickNameForID(arg0 uint64) cstring
+extern func SDL_GetJoystickPath(arg0 *byte) cstring
+extern func SDL_GetJoystickPathForID(arg0 uint64) cstring
+extern func SDL_GetJoystickPlayerIndex(arg0 *byte) int
+extern func SDL_GetJoystickPlayerIndexForID(arg0 uint64) int
+extern func SDL_GetJoystickPowerInfo(arg0 *byte, arg1 *byte) int
+extern func SDL_GetJoystickProduct(arg0 *byte) uint16
+extern func SDL_GetJoystickProductForID(arg0 uint64) uint16
+extern func SDL_GetJoystickProductVersion(arg0 *byte) uint16
+extern func SDL_GetJoystickProductVersionForID(arg0 uint64) uint16
+extern func SDL_GetJoystickProperties(arg0 *byte) uint64
+extern func SDL_GetJoysticks(arg0 *byte) *byte
+extern func SDL_GetJoystickSensorData(arg0 *byte, arg1 int, arg2 *byte, arg3 int) bool
+extern func SDL_GetJoystickSensorDataRate(arg0 *byte, arg1 int) float32
+extern func SDL_GetJoystickSerial(arg0 *byte) cstring
+extern func SDL_GetJoystickType(arg0 *byte) int
+extern func SDL_GetJoystickTypeForID(arg0 uint64) int
+extern func SDL_GetJoystickVendor(arg0 *byte) uint16
+extern func SDL_GetJoystickVendorForID(arg0 uint64) uint16
+extern func SDL_GetKeyboardFocus() *byte
+extern func SDL_GetKeyboardNameForID(arg0 uint64) cstring
+extern func SDL_GetKeyboards(arg0 *byte) *byte
+extern func SDL_GetKeyboardState(arg0 *byte) *byte
+extern func SDL_GetKeyFromName(arg0 cstring) int
+extern func SDL_GetKeyFromScancode(arg0 int, arg1 int, arg2 bool) int
+extern func SDL_GetKeyName(arg0 int) cstring
+extern func SDL_GetLogOutputFunction(arg0 *byte, arg1 *byte)
+extern func SDL_GetLogPriority(arg0 int) int
+extern func SDL_GetMasksForPixelFormat(arg0 int, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte, arg5 *byte) bool
+extern func SDL_GetMaxHapticEffects(arg0 *byte) int
+extern func SDL_GetMaxHapticEffectsPlaying(arg0 *byte) int
+extern func SDL_GetMemoryFunctions(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte)
+extern func SDL_GetMice(arg0 *byte) *byte
+extern func SDL_GetModState() int
+extern func SDL_GetMouseFocus() *byte
+extern func SDL_GetMouseNameForID(arg0 uint64) cstring
+extern func SDL_GetMouseState(arg0 *byte, arg1 *byte) int
+extern func SDL_GetNaturalDisplayOrientation(arg0 uint64) int
+extern func SDL_GetNumAllocations() int
+extern func SDL_GetNumAudioDrivers() int
+extern func SDL_GetNumberProperty(arg0 uint64, arg1 cstring, arg2 int64) int64
+extern func SDL_GetNumCameraDrivers() int
+extern func SDL_GetNumGamepadTouchpadFingers(arg0 *byte, arg1 int) int
+extern func SDL_GetNumGamepadTouchpads(arg0 *byte) int
+extern func SDL_GetNumGPUDrivers() int
+extern func SDL_GetNumHapticAxes(arg0 *byte) int
+extern func SDL_GetNumJoystickAxes(arg0 *byte) int
+extern func SDL_GetNumJoystickBalls(arg0 *byte) int
+extern func SDL_GetNumJoystickButtons(arg0 *byte) int
+extern func SDL_GetNumJoystickHats(arg0 *byte) int
+extern func SDL_GetNumLogicalCPUCores() int
+extern func SDL_GetNumProperties(arg0 uint64) int
+extern func SDL_GetNumRenderDrivers() int
+extern func SDL_GetNumVideoDrivers() int
+extern func SDL_GetOriginalMemoryFunctions(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte)
+extern func SDL_GetPathInfo(arg0 cstring, arg1 *byte) bool
+extern func SDL_GetPenDeviceType(arg0 uint64) int
+extern func SDL_GetPerformanceCounter() uint64
+extern func SDL_GetPerformanceFrequency() uint64
+extern func SDL_GetPixelFormatDetails(arg0 int) *byte
+extern func SDL_GetPixelFormatForMasks(arg0 int, arg1 uint32, arg2 uint32, arg3 uint32, arg4 uint32) int
+extern func SDL_GetPixelFormatFromGPUTextureFormat(arg0 int) int
+extern func SDL_GetPixelFormatName(arg0 int) cstring
+extern func SDL_GetPlatform() cstring
+extern func SDL_GetPointerProperty(arg0 uint64, arg1 cstring, arg2 *byte) *byte
+extern func SDL_GetPowerInfo(arg0 *byte, arg1 *byte) int
+extern func SDL_GetPreferredLocales(arg0 *byte) *byte
+extern func SDL_GetPrefPath(arg0 cstring, arg1 cstring) cstring
+extern func SDL_GetPrimaryDisplay() uint64
+extern func SDL_GetPrimarySelectionText() cstring
+extern func SDL_GetProcessInput(arg0 *byte) *byte
+extern func SDL_GetProcessOutput(arg0 *byte) *byte
+extern func SDL_GetProcessProperties(arg0 *byte) uint64
+extern func SDL_GetPropertyType(arg0 uint64, arg1 cstring) int
+extern func SDL_GetRealGamepadType(arg0 *byte) int
+extern func SDL_GetRealGamepadTypeForID(arg0 uint64) int
+extern func SDL_GetRectAndLineIntersection(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_GetRectAndLineIntersectionFloat(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_GetRectEnclosingPoints(arg0 *byte, arg1 int, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetRectEnclosingPointsFloat(arg0 *byte, arg1 int, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetRectIntersection(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRectIntersectionFloat(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRectUnion(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRectUnionFloat(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRelativeMouseState(arg0 *byte, arg1 *byte) int
+extern func SDL_GetRenderClipRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderClipRectFloat(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderColorScale(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderDrawBlendMode(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderDrawColor(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_GetRenderDrawColorFloat(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_GetRenderDriver(arg0 int) cstring
+extern func SDL_GetRenderer(arg0 *byte) *byte
+extern func SDL_GetRendererFromTexture(arg0 *byte) *byte
+extern func SDL_GetRendererName(arg0 *byte) cstring
+extern func SDL_GetRendererProperties(arg0 *byte) uint64
+extern func SDL_GetRenderHDRHeadroom(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderLogicalPresentation(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetRenderLogicalPresentationRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderMetalCommandEncoder(arg0 *byte) *byte
+extern func SDL_GetRenderMetalLayer(arg0 *byte) *byte
+extern func SDL_GetRenderOutputSize(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRenderSafeArea(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderScale(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRenderTarget(arg0 *byte) *byte
+extern func SDL_GetRenderTextureAddressMode(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetRenderViewport(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderViewportFloat(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderVSync(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetRenderWindow(arg0 *byte) *byte
+extern func SDL_GetRevision() cstring
+extern func SDL_GetRGB(arg0 uint32, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte, arg5 *byte)
+extern func SDL_GetRGBA(arg0 uint32, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte, arg5 *byte, arg6 *byte)
+extern func SDL_GetSandbox() int
+extern func SDL_GetScancodeFromKey(arg0 int, arg1 *byte) int
+extern func SDL_GetScancodeFromName(arg0 cstring) int
+extern func SDL_GetScancodeName(arg0 int) cstring
+extern func SDL_GetSemaphoreValue(arg0 *byte) uint32
+extern func SDL_GetSensorData(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_GetSensorFromID(arg0 uint64) *byte
+extern func SDL_GetSensorID(arg0 *byte) uint64
+extern func SDL_GetSensorName(arg0 *byte) cstring
+extern func SDL_GetSensorNameForID(arg0 uint64) cstring
+extern func SDL_GetSensorNonPortableType(arg0 *byte) int
+extern func SDL_GetSensorNonPortableTypeForID(arg0 uint64) int
+extern func SDL_GetSensorProperties(arg0 *byte) uint64
+extern func SDL_GetSensors(arg0 *byte) *byte
+extern func SDL_GetSensorType(arg0 *byte) int
+extern func SDL_GetSensorTypeForID(arg0 uint64) int
+extern func SDL_GetSilenceValueForFormat(arg0 int) int
+extern func SDL_GetSIMDAlignment() uint64
+extern func SDL_GetStorageFileSize(arg0 *byte, arg1 cstring, arg2 *byte) bool
+extern func SDL_GetStoragePathInfo(arg0 *byte, arg1 cstring, arg2 *byte) bool
+extern func SDL_GetStorageSpaceRemaining(arg0 *byte) uint64
+extern func SDL_GetStringProperty(arg0 uint64, arg1 cstring, arg2 cstring) cstring
+extern func SDL_GetSurfaceAlphaMod(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetSurfaceBlendMode(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetSurfaceClipRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetSurfaceColorKey(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetSurfaceColorMod(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetSurfaceColorspace(arg0 *byte) int
+extern func SDL_GetSurfaceImages(arg0 *byte, arg1 *byte) *byte
+extern func SDL_GetSurfacePalette(arg0 *byte) *byte
+extern func SDL_GetSurfaceProperties(arg0 *byte) uint64
+extern func SDL_GetSystemPageSize() int
+extern func SDL_GetSystemRAM() int
+extern func SDL_GetSystemTheme() int
+extern func SDL_GetTextInputArea(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetTextureAlphaMod(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetTextureAlphaModFloat(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetTextureBlendMode(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetTextureColorMod(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetTextureColorModFloat(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_GetTexturePalette(arg0 *byte) *byte
+extern func SDL_GetTextureProperties(arg0 *byte) uint64
+extern func SDL_GetTextureScaleMode(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetTextureSize(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetThreadID(arg0 *byte) uint64
+extern func SDL_GetThreadName(arg0 *byte) cstring
+extern func SDL_GetThreadState(arg0 *byte) int
+extern func SDL_GetTicks() uint64
+extern func SDL_GetTicksNS() uint64
+extern func SDL_GetTLS(arg0 *byte) *byte
+extern func SDL_GetTouchDeviceName(arg0 uint64) cstring
+extern func SDL_GetTouchDevices(arg0 *byte) *byte
+extern func SDL_GetTouchDeviceType(arg0 uint64) int
+extern func SDL_GetTouchFingers(arg0 uint64, arg1 *byte) *byte
+extern func SDL_GetTrayEntries(arg0 *byte, arg1 *byte) *byte
+extern func SDL_GetTrayEntryChecked(arg0 *byte) bool
+extern func SDL_GetTrayEntryEnabled(arg0 *byte) bool
+extern func SDL_GetTrayEntryLabel(arg0 *byte) cstring
+extern func SDL_GetTrayEntryParent(arg0 *byte) *byte
+extern func SDL_GetTrayMenu(arg0 *byte) *byte
+extern func SDL_GetTrayMenuParentEntry(arg0 *byte) *byte
+extern func SDL_GetTrayMenuParentTray(arg0 *byte) *byte
+extern func SDL_GetTraySubmenu(arg0 *byte) *byte
+extern func SDL_GetUserFolder(arg0 int) cstring
+extern func SDL_GetVersion() int
+extern func SDL_GetVideoDriver(arg0 int) cstring
+extern func SDL_GetWindowAspectRatio(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetWindowBordersSize(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_GetWindowDisplayScale(arg0 *byte) float32
+extern func SDL_GetWindowFlags(arg0 *byte) int
+extern func SDL_GetWindowFromEvent(arg0 *byte) *byte
+extern func SDL_GetWindowFromID(arg0 uint64) *byte
+extern func SDL_GetWindowFullscreenMode(arg0 *byte) *byte
+extern func SDL_GetWindowICCProfile(arg0 *byte, arg1 *byte) *byte
+extern func SDL_GetWindowID(arg0 *byte) uint64
+extern func SDL_GetWindowKeyboardGrab(arg0 *byte) bool
+extern func SDL_GetWindowMaximumSize(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetWindowMinimumSize(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetWindowMouseGrab(arg0 *byte) bool
+extern func SDL_GetWindowMouseRect(arg0 *byte) *byte
+extern func SDL_GetWindowOpacity(arg0 *byte) float32
+extern func SDL_GetWindowParent(arg0 *byte) *byte
+extern func SDL_GetWindowPixelDensity(arg0 *byte) float32
+extern func SDL_GetWindowPixelFormat(arg0 *byte) int
+extern func SDL_GetWindowPosition(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetWindowProgressState(arg0 *byte) int
+extern func SDL_GetWindowProgressValue(arg0 *byte) float32
+extern func SDL_GetWindowProperties(arg0 *byte) uint64
+extern func SDL_GetWindowRelativeMouseMode(arg0 *byte) bool
+extern func SDL_GetWindows(arg0 *byte) *byte
+extern func SDL_GetWindowSafeArea(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetWindowSize(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetWindowSizeInPixels(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_GetWindowSurface(arg0 *byte) *byte
+extern func SDL_GetWindowSurfaceVSync(arg0 *byte, arg1 *byte) bool
+extern func SDL_GetWindowTitle(arg0 *byte) cstring
+extern func SDL_GL_CreateContext(arg0 *byte) int
+extern func SDL_GL_DestroyContext(arg0 int) bool
+extern func SDL_GL_ExtensionSupported(arg0 cstring) bool
+extern func SDL_GL_GetAttribute(arg0 int, arg1 *byte) bool
+extern func SDL_GL_GetCurrentContext() int
+extern func SDL_GL_GetCurrentWindow() *byte
+extern func SDL_GL_GetProcAddress(arg0 cstring) int
+extern func SDL_GL_GetSwapInterval(arg0 *byte) bool
+extern func SDL_GL_LoadLibrary(arg0 cstring) bool
+extern func SDL_GL_MakeCurrent(arg0 *byte, arg1 int) bool
+extern func SDL_GL_ResetAttributes()
+extern func SDL_GL_SetAttribute(arg0 int, arg1 int) bool
+extern func SDL_GL_SetSwapInterval(arg0 int) bool
+extern func SDL_GL_SwapWindow(arg0 *byte) bool
+extern func SDL_GL_UnloadLibrary()
+extern func SDL_GlobDirectory(arg0 cstring, arg1 cstring, arg2 int, arg3 *byte) cstring
+extern func SDL_GlobStorageDirectory(arg0 *byte, arg1 cstring, arg2 cstring, arg3 int, arg4 *byte) cstring
+extern func SDL_GPUSupportsProperties(arg0 uint64) bool
+extern func SDL_GPUSupportsShaderFormats(arg0 int, arg1 cstring) bool
+extern func SDL_GPUTextureFormatTexelBlockSize(arg0 int) uint32
+extern func SDL_GPUTextureSupportsFormat(arg0 *byte, arg1 int, arg2 int, arg3 int) bool
+extern func SDL_GPUTextureSupportsSampleCount(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_GUIDToString(arg0 uint64, arg1 cstring, arg2 int)
+extern func SDL_HapticEffectSupported(arg0 *byte, arg1 *byte) bool
+extern func SDL_HapticRumbleSupported(arg0 *byte) bool
+extern func SDL_HasAltiVec() bool
+extern func SDL_HasARMSIMD() bool
+extern func SDL_HasAVX() bool
+extern func SDL_HasAVX2() bool
+extern func SDL_HasAVX512F() bool
+extern func SDL_HasClipboardData(arg0 cstring) bool
+extern func SDL_HasClipboardText() bool
+extern func SDL_HasEvent(arg0 uint32) bool
+extern func SDL_HasEvents(arg0 uint32, arg1 uint32) bool
+extern func SDL_HasGamepad() bool
+extern func SDL_HasJoystick() bool
+extern func SDL_HasKeyboard() bool
+extern func SDL_HasLASX() bool
+extern func SDL_HasLSX() bool
+extern func SDL_HasMMX() bool
+extern func SDL_HasMouse() bool
+extern func SDL_HasNEON() bool
+extern func SDL_HasPrimarySelectionText() bool
+extern func SDL_HasProperty(arg0 uint64, arg1 cstring) bool
+extern func SDL_HasRectIntersection(arg0 *byte, arg1 *byte) bool
+extern func SDL_HasRectIntersectionFloat(arg0 *byte, arg1 *byte) bool
+extern func SDL_HasScreenKeyboardSupport() bool
+extern func SDL_HasSSE() bool
+extern func SDL_HasSSE2() bool
+extern func SDL_HasSSE3() bool
+extern func SDL_HasSSE41() bool
+extern func SDL_HasSSE42() bool
+extern func SDL_HasSVE2() bool
+extern func SDL_hid_ble_scan(arg0 bool)
+extern func SDL_hid_close(arg0 *byte) int
+extern func SDL_hid_device_change_count() uint32
+extern func SDL_hid_enumerate(arg0 uint16, arg1 uint16) *byte
+extern func SDL_hid_exit() int
+extern func SDL_hid_free_enumeration(arg0 *byte)
+extern func SDL_hid_get_device_info(arg0 *byte) *byte
+extern func SDL_hid_get_feature_report(arg0 *byte, arg1 cstring, arg2 uint64) int
+extern func SDL_hid_get_indexed_string(arg0 *byte, arg1 int, arg2 *byte, arg3 uint64) int
+extern func SDL_hid_get_input_report(arg0 *byte, arg1 cstring, arg2 uint64) int
+extern func SDL_hid_get_manufacturer_string(arg0 *byte, arg1 *byte, arg2 uint64) int
+extern func SDL_hid_get_product_string(arg0 *byte, arg1 *byte, arg2 uint64) int
+extern func SDL_hid_get_properties(arg0 *byte) uint64
+extern func SDL_hid_get_report_descriptor(arg0 *byte, arg1 cstring, arg2 uint64) int
+extern func SDL_hid_get_serial_number_string(arg0 *byte, arg1 *byte, arg2 uint64) int
+extern func SDL_hid_init() int
+extern func SDL_hid_open_path(arg0 cstring) *byte
+extern func SDL_hid_open(arg0 uint16, arg1 uint16, arg2 *byte) *byte
+extern func SDL_hid_read_timeout(arg0 *byte, arg1 cstring, arg2 uint64, arg3 int) int
+extern func SDL_hid_read(arg0 *byte, arg1 cstring, arg2 uint64) int
+extern func SDL_hid_send_feature_report(arg0 *byte, arg1 cstring, arg2 uint64) int
+extern func SDL_hid_set_nonblocking(arg0 *byte, arg1 int) int
+extern func SDL_hid_write(arg0 *byte, arg1 cstring, arg2 uint64) int
+extern func SDL_HideCursor() bool
+extern func SDL_HideWindow(arg0 *byte) bool
+extern func SDL_iconv_close(arg0 int) int
+extern func SDL_iconv_open(arg0 cstring, arg1 cstring) int
+extern func SDL_iconv_string(arg0 cstring, arg1 cstring, arg2 cstring, arg3 uint64) cstring
+extern func SDL_iconv(arg0 int, arg1 cstring, arg2 *byte, arg3 cstring, arg4 *byte) uint64
+extern func SDL_Init(arg0 int) bool
+extern func SDL_InitHapticRumble(arg0 *byte) bool
+extern func SDL_InitSubSystem(arg0 int) bool
+extern func SDL_InsertGPUDebugLabel(arg0 *byte, arg1 cstring)
+extern func SDL_InsertTrayEntryAt(arg0 *byte, arg1 int, arg2 cstring, arg3 int) *byte
+extern func SDL_IOFromConstMem(arg0 *byte, arg1 uint64) *byte
+extern func SDL_IOFromDynamicMem() *byte
+extern func SDL_IOFromFile(arg0 cstring, arg1 cstring) *byte
+extern func SDL_IOFromMem(arg0 *byte, arg1 uint64) *byte
+extern func SDL_IOprintf(arg0 *byte, arg1 cstring, arg2 int, arg3 int) uint64
+extern func SDL_IOvprintf(arg0 *byte, arg1 cstring, arg2 int, arg3 int, arg4 int) uint64
+extern func SDL_isalnum(arg0 int) int
+extern func SDL_isalpha(arg0 int) int
+extern func SDL_IsAudioDevicePhysical(arg0 uint64) bool
+extern func SDL_IsAudioDevicePlayback(arg0 uint64) bool
+extern func SDL_isblank(arg0 int) int
+extern func SDL_iscntrl(arg0 int) int
+extern func SDL_isdigit(arg0 int) int
+extern func SDL_IsGamepad(arg0 uint64) bool
+extern func SDL_isgraph(arg0 int) int
+extern func SDL_isinf(arg0 float64) int
+extern func SDL_isinff(arg0 float32) int
+extern func SDL_IsJoystickHaptic(arg0 *byte) bool
+extern func SDL_IsJoystickVirtual(arg0 uint64) bool
+extern func SDL_islower(arg0 int) int
+extern func SDL_IsMainThread() bool
+extern func SDL_IsMouseHaptic() bool
+extern func SDL_isnan(arg0 float64) int
+extern func SDL_isnanf(arg0 float32) int
+extern func SDL_IsPhone() bool
+extern func SDL_isprint(arg0 int) int
+extern func SDL_ispunct(arg0 int) int
+extern func SDL_isspace(arg0 int) int
+extern func SDL_IsTablet() bool
+extern func SDL_IsTV() bool
+extern func SDL_isupper(arg0 int) int
+extern func SDL_isxdigit(arg0 int) int
+extern func SDL_itoa(arg0 int, arg1 cstring, arg2 int) cstring
+extern func SDL_JoystickConnected(arg0 *byte) bool
+extern func SDL_JoystickEventsEnabled() bool
+extern func SDL_JoystickHasSensor(arg0 *byte, arg1 int) bool
+extern func SDL_JoystickSensorEnabled(arg0 *byte, arg1 int) bool
+extern func SDL_KillProcess(arg0 *byte, arg1 bool) bool
+extern func SDL_lltoa(arg0 int64, arg1 cstring, arg2 int) cstring
+extern func SDL_LoadBMP_IO(arg0 *byte, arg1 bool) *byte
+extern func SDL_LoadBMP(arg0 cstring) *byte
+extern func SDL_LoadFile_IO(arg0 *byte, arg1 *byte, arg2 bool) *byte
+extern func SDL_LoadFile(arg0 cstring, arg1 *byte) *byte
+extern func SDL_LoadFileAsync(arg0 cstring, arg1 *byte, arg2 *byte) bool
+extern func SDL_LoadFunction(arg0 *byte, arg1 cstring) int
+extern func SDL_LoadJPG_IO(arg0 *byte, arg1 bool) *byte
+extern func SDL_LoadJPG(arg0 cstring) *byte
+extern func SDL_LoadObject(arg0 cstring) *byte
+extern func SDL_LoadPNG_IO(arg0 *byte, arg1 bool) *byte
+extern func SDL_LoadPNG(arg0 cstring) *byte
+extern func SDL_LoadSurface_IO(arg0 *byte, arg1 bool) *byte
+extern func SDL_LoadSurface(arg0 cstring) *byte
+extern func SDL_LoadWAV_IO(arg0 *byte, arg1 bool, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_LoadWAV(arg0 cstring, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_LockAudioStream(arg0 *byte) bool
+extern func SDL_LockJoysticks()
+extern func SDL_LockMutex(arg0 *byte)
+extern func SDL_LockProperties(arg0 uint64) bool
+extern func SDL_LockRWLockForReading(arg0 *byte)
+extern func SDL_LockRWLockForWriting(arg0 *byte)
+extern func SDL_LockSpinlock(arg0 *byte)
+extern func SDL_LockSurface(arg0 *byte) bool
+extern func SDL_LockTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_LockTextureToSurface(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_Log(arg0 cstring, arg1 int, arg2 int)
+extern func SDL_log(arg0 float64) float64
+extern func SDL_log10(arg0 float64) float64
+extern func SDL_log10f(arg0 float32) float32
+extern func SDL_LogCritical(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_LogDebug(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_LogError(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_logf(arg0 float32) float32
+extern func SDL_LogInfo(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_LogMessage(arg0 int, arg1 int, arg2 cstring, arg3 int, arg4 int)
+extern func SDL_LogMessageV(arg0 int, arg1 int, arg2 cstring, arg3 int, arg4 int, arg5 int)
+extern func SDL_LogTrace(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_LogVerbose(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_LogWarn(arg0 int, arg1 cstring, arg2 int, arg3 int)
+extern func SDL_lround(arg0 float64) int
+extern func SDL_lroundf(arg0 float32) int
+extern func SDL_ltoa(arg0 int, arg1 cstring, arg2 int) cstring
+extern func SDL_malloc(arg0 uint64) *byte
+extern func SDL_MapGPUTransferBuffer(arg0 *byte, arg1 *byte, arg2 bool) *byte
+extern func SDL_MapRGB(arg0 *byte, arg1 *byte, arg2 uint8, arg3 uint8, arg4 uint8) uint32
+extern func SDL_MapRGBA(arg0 *byte, arg1 *byte, arg2 uint8, arg3 uint8, arg4 uint8, arg5 uint8) uint32
+extern func SDL_MapSurfaceRGB(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8) uint32
+extern func SDL_MapSurfaceRGBA(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8, arg4 uint8) uint32
+extern func SDL_MaximizeWindow(arg0 *byte) bool
+extern func SDL_memcmp(arg0 *byte, arg1 *byte, arg2 uint64) int
+extern func SDL_memcpy(arg0 *byte, arg1 *byte, arg2 uint64) *byte
+extern func SDL_memmove(arg0 *byte, arg1 *byte, arg2 uint64) *byte
+extern func SDL_MemoryBarrierAcquireFunction()
+extern func SDL_MemoryBarrierReleaseFunction()
+extern func SDL_memset(arg0 *byte, arg1 int, arg2 uint64) *byte
+extern func SDL_memset4(arg0 *byte, arg1 uint32, arg2 uint64) *byte
+extern func SDL_Metal_CreateView(arg0 *byte) int
+extern func SDL_Metal_DestroyView(arg0 int)
+extern func SDL_Metal_GetLayer(arg0 int) *byte
+extern func SDL_MinimizeWindow(arg0 *byte) bool
+extern func SDL_MixAudio(arg0 *byte, arg1 *byte, arg2 int, arg3 uint32, arg4 float32) bool
+extern func SDL_modf(arg0 float64, arg1 *byte) float64
+extern func SDL_modff(arg0 float32, arg1 *byte) float32
+extern func SDL_murmur3_32(arg0 *byte, arg1 uint64, arg2 uint32) uint32
+extern func SDL_OnApplicationDidEnterBackground()
+extern func SDL_OnApplicationDidEnterForeground()
+extern func SDL_OnApplicationDidReceiveMemoryWarning()
+extern func SDL_OnApplicationWillEnterBackground()
+extern func SDL_OnApplicationWillEnterForeground()
+extern func SDL_OnApplicationWillTerminate()
+extern func SDL_OpenAudioDevice(arg0 uint64, arg1 *byte) uint64
+extern func SDL_OpenAudioDeviceStream(arg0 uint64, arg1 *byte, arg2 int, arg3 *byte) *byte
+extern func SDL_OpenCamera(arg0 uint64, arg1 *byte) *byte
+extern func SDL_OpenFileStorage(arg0 cstring) *byte
+extern func SDL_OpenGamepad(arg0 uint64) *byte
+extern func SDL_OpenHaptic(arg0 uint64) *byte
+extern func SDL_OpenHapticFromJoystick(arg0 *byte) *byte
+extern func SDL_OpenHapticFromMouse() *byte
+extern func SDL_OpenIO(arg0 *byte, arg1 *byte) *byte
+extern func SDL_OpenJoystick(arg0 uint64) *byte
+extern func SDL_OpenSensor(arg0 uint64) *byte
+extern func SDL_OpenStorage(arg0 *byte, arg1 *byte) *byte
+extern func SDL_OpenTitleStorage(arg0 cstring, arg1 uint64) *byte
+extern func SDL_OpenURL(arg0 cstring) bool
+extern func SDL_OpenUserStorage(arg0 cstring, arg1 cstring, arg2 uint64) *byte
+extern func SDL_OutOfMemory() bool
+extern func SDL_PauseAudioDevice(arg0 uint64) bool
+extern func SDL_PauseAudioStreamDevice(arg0 *byte) bool
+extern func SDL_PauseHaptic(arg0 *byte) bool
+extern func SDL_PeepEvents(arg0 *byte, arg1 int, arg2 int, arg3 uint32, arg4 uint32) int
+extern func SDL_PlayHapticRumble(arg0 *byte, arg1 float32, arg2 uint32) bool
+extern func SDL_PollEvent(arg0 *byte) bool
+extern func SDL_PopGPUDebugGroup(arg0 *byte)
+extern func SDL_pow(arg0 float64, arg1 float64) float64
+extern func SDL_powf(arg0 float32, arg1 float32) float32
+extern func SDL_PremultiplyAlpha(arg0 int, arg1 int, arg2 int, arg3 *byte, arg4 int, arg5 int, arg6 *byte, arg7 int, arg8 bool) bool
+extern func SDL_PremultiplySurfaceAlpha(arg0 *byte, arg1 bool) bool
+extern func SDL_PumpEvents()
+extern func SDL_PushEvent(arg0 *byte) bool
+extern func SDL_PushGPUComputeUniformData(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_PushGPUDebugGroup(arg0 *byte, arg1 cstring)
+extern func SDL_PushGPUFragmentUniformData(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_PushGPUVertexUniformData(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32)
+extern func SDL_PutAudioStreamData(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_PutAudioStreamDataNoCopy(arg0 *byte, arg1 *byte, arg2 int, arg3 int, arg4 *byte) bool
+extern func SDL_PutAudioStreamPlanarData(arg0 *byte, arg1 *byte, arg2 int, arg3 int) bool
+extern func SDL_qsort_r(arg0 *byte, arg1 uint64, arg2 uint64, arg3 int, arg4 *byte)
+extern func SDL_qsort(arg0 *byte, arg1 uint64, arg2 uint64, arg3 int)
+extern func SDL_QueryGPUFence(arg0 *byte, arg1 *byte) bool
+extern func SDL_Quit()
+extern func SDL_QuitSubSystem(arg0 int)
+extern func SDL_RaiseWindow(arg0 *byte) bool
+extern func SDL_rand_bits_r(arg0 *byte) uint32
+extern func SDL_rand_bits() uint32
+extern func SDL_rand_r(arg0 *byte, arg1 int32) int32
+extern func SDL_rand(arg0 int32) int32
+extern func SDL_randf_r(arg0 *byte) float32
+extern func SDL_randf() float32
+extern func SDL_ReadAsyncIO(arg0 *byte, arg1 *byte, arg2 uint64, arg3 uint64, arg4 *byte, arg5 *byte) bool
+extern func SDL_ReadIO(arg0 *byte, arg1 *byte, arg2 uint64) uint64
+extern func SDL_ReadProcess(arg0 *byte, arg1 *byte, arg2 *byte) *byte
+extern func SDL_ReadS16BE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadS16LE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadS32BE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadS32LE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadS64BE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadS64LE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadS8(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadStorageFile(arg0 *byte, arg1 cstring, arg2 *byte, arg3 uint64) bool
+extern func SDL_ReadSurfacePixel(arg0 *byte, arg1 int, arg2 int, arg3 *byte, arg4 *byte, arg5 *byte, arg6 *byte) bool
+extern func SDL_ReadSurfacePixelFloat(arg0 *byte, arg1 int, arg2 int, arg3 *byte, arg4 *byte, arg5 *byte, arg6 *byte) bool
+extern func SDL_ReadU16BE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadU16LE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadU32BE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadU32LE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadU64BE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadU64LE(arg0 *byte, arg1 *byte) bool
+extern func SDL_ReadU8(arg0 *byte, arg1 *byte) bool
+extern func SDL_realloc(arg0 *byte, arg1 uint64) *byte
+extern func SDL_RegisterEvents(arg0 int) uint32
+extern func SDL_ReleaseCameraFrame(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUBuffer(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUComputePipeline(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUFence(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUGraphicsPipeline(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUSampler(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUShader(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUTexture(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseGPUTransferBuffer(arg0 *byte, arg1 *byte)
+extern func SDL_ReleaseWindowFromGPUDevice(arg0 *byte, arg1 *byte)
+extern func SDL_ReloadGamepadMappings() bool
+extern func SDL_RemoveEventWatch(arg0 int, arg1 *byte)
+extern func SDL_RemoveHintCallback(arg0 cstring, arg1 int, arg2 *byte)
+extern func SDL_RemoveNotification(arg0 uint64) bool
+extern func SDL_RemovePath(arg0 cstring) bool
+extern func SDL_RemoveStoragePath(arg0 *byte, arg1 cstring) bool
+extern func SDL_RemoveSurfaceAlternateImages(arg0 *byte)
+extern func SDL_RemoveTimer(arg0 uint64) bool
+extern func SDL_RemoveTrayEntry(arg0 *byte)
+extern func SDL_RenamePath(arg0 cstring, arg1 cstring) bool
+extern func SDL_RenameStoragePath(arg0 *byte, arg1 cstring, arg2 cstring) bool
+extern func SDL_RenderClear(arg0 *byte) bool
+extern func SDL_RenderClipEnabled(arg0 *byte) bool
+extern func SDL_RenderCoordinatesFromWindow(arg0 *byte, arg1 float32, arg2 float32, arg3 *byte, arg4 *byte) bool
+extern func SDL_RenderCoordinatesToWindow(arg0 *byte, arg1 float32, arg2 float32, arg3 *byte, arg4 *byte) bool
+extern func SDL_RenderDebugText(arg0 *byte, arg1 float32, arg2 float32, arg3 cstring) bool
+extern func SDL_RenderDebugTextFormat(arg0 *byte, arg1 float32, arg2 float32, arg3 cstring, arg4 int, arg5 int) bool
+extern func SDL_RenderFillRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_RenderFillRects(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_RenderGeometry(arg0 *byte, arg1 *byte, arg2 *byte, arg3 int, arg4 *byte, arg5 int) bool
+extern func SDL_RenderGeometryRaw(arg0 *byte, arg1 *byte, arg2 *byte, arg3 int, arg4 *byte, arg5 int, arg6 *byte, arg7 int, arg8 int, arg9 *byte, arg10 int, arg11 int) bool
+extern func SDL_RenderLine(arg0 *byte, arg1 float32, arg2 float32, arg3 float32, arg4 float32) bool
+extern func SDL_RenderLines(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_RenderPoint(arg0 *byte, arg1 float32, arg2 float32) bool
+extern func SDL_RenderPoints(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_RenderPresent(arg0 *byte) bool
+extern func SDL_RenderReadPixels(arg0 *byte, arg1 *byte) *byte
+extern func SDL_RenderRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_RenderRects(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_RenderTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte) bool
+extern func SDL_RenderTexture9Grid(arg0 *byte, arg1 *byte, arg2 *byte, arg3 float32, arg4 float32, arg5 float32, arg6 float32, arg7 float32, arg8 *byte) bool
+extern func SDL_RenderTexture9GridTiled(arg0 *byte, arg1 *byte, arg2 *byte, arg3 float32, arg4 float32, arg5 float32, arg6 float32, arg7 float32, arg8 *byte, arg9 float32) bool
+extern func SDL_RenderTextureAffine(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte, arg5 *byte) bool
+extern func SDL_RenderTextureRotated(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 float64, arg5 *byte, arg6 int) bool
+extern func SDL_RenderTextureTiled(arg0 *byte, arg1 *byte, arg2 *byte, arg3 float32, arg4 *byte) bool
+extern func SDL_RenderViewportSet(arg0 *byte) bool
+extern func SDL_ReportAssertion(arg0 *byte, arg1 cstring, arg2 cstring, arg3 int) int
+extern func SDL_RequestNotificationPermission() bool
+extern func SDL_ResetAssertionReport()
+extern func SDL_ResetHint(arg0 cstring) bool
+extern func SDL_ResetHints()
+extern func SDL_ResetKeyboard()
+extern func SDL_ResetLogPriorities()
+extern func SDL_RestoreWindow(arg0 *byte) bool
+extern func SDL_ResumeAudioDevice(arg0 uint64) bool
+extern func SDL_ResumeAudioStreamDevice(arg0 *byte) bool
+extern func SDL_ResumeHaptic(arg0 *byte) bool
+extern func SDL_RotateSurface(arg0 *byte, arg1 float32) *byte
+extern func SDL_round(arg0 float64) float64
+extern func SDL_roundf(arg0 float32) float32
+extern func SDL_RumbleGamepad(arg0 *byte, arg1 uint16, arg2 uint16, arg3 uint32) bool
+extern func SDL_RumbleGamepadTriggers(arg0 *byte, arg1 uint16, arg2 uint16, arg3 uint32) bool
+extern func SDL_RumbleJoystick(arg0 *byte, arg1 uint16, arg2 uint16, arg3 uint32) bool
+extern func SDL_RumbleJoystickTriggers(arg0 *byte, arg1 uint16, arg2 uint16, arg3 uint32) bool
+extern func SDL_RunHapticEffect(arg0 *byte, arg1 uint64, arg2 uint32) bool
+extern func SDL_RunOnMainThread(arg0 int, arg1 *byte, arg2 bool) bool
+extern func SDL_SaveBMP_IO(arg0 *byte, arg1 *byte, arg2 bool) bool
+extern func SDL_SaveBMP(arg0 *byte, arg1 cstring) bool
+extern func SDL_SaveFile_IO(arg0 *byte, arg1 *byte, arg2 uint64, arg3 bool) bool
+extern func SDL_SaveFile(arg0 cstring, arg1 *byte, arg2 uint64) bool
+extern func SDL_SavePNG_IO(arg0 *byte, arg1 *byte, arg2 bool) bool
+extern func SDL_SavePNG(arg0 *byte, arg1 cstring) bool
+extern func SDL_scalbn(arg0 float64, arg1 int) float64
+extern func SDL_scalbnf(arg0 float32, arg1 int) float32
+extern func SDL_ScaleSurface(arg0 *byte, arg1 int, arg2 int, arg3 int) *byte
+extern func SDL_ScreenKeyboardShown(arg0 *byte) bool
+extern func SDL_ScreenSaverEnabled() bool
+extern func SDL_SeekIO(arg0 *byte, arg1 int64, arg2 int) int64
+extern func SDL_SendGamepadEffect(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_SendJoystickEffect(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_SendJoystickVirtualSensorData(arg0 *byte, arg1 int, arg2 uint64, arg3 *byte, arg4 int) bool
+extern func SDL_SetAppMetadata(arg0 cstring, arg1 cstring, arg2 cstring) bool
+extern func SDL_SetAppMetadataProperty(arg0 cstring, arg1 cstring) bool
+extern func SDL_SetAssertionHandler(arg0 int, arg1 *byte)
+extern func SDL_SetAtomicInt(arg0 *byte, arg1 int) int
+extern func SDL_SetAtomicPointer(arg0 *byte, arg1 *byte) *byte
+extern func SDL_SetAtomicU32(arg0 *byte, arg1 uint32) uint32
+extern func SDL_SetAudioDeviceGain(arg0 uint64, arg1 float32) bool
+extern func SDL_SetAudioPostmixCallback(arg0 uint64, arg1 int, arg2 *byte) bool
+extern func SDL_SetAudioStreamFormat(arg0 *byte, arg1 *byte, arg2 *byte) bool
+extern func SDL_SetAudioStreamFrequencyRatio(arg0 *byte, arg1 float32) bool
+extern func SDL_SetAudioStreamGain(arg0 *byte, arg1 float32) bool
+extern func SDL_SetAudioStreamGetCallback(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_SetAudioStreamInputChannelMap(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_SetAudioStreamOutputChannelMap(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_SetAudioStreamPutCallback(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_SetBooleanProperty(arg0 uint64, arg1 cstring, arg2 bool) bool
+extern func SDL_SetClipboardData(arg0 int, arg1 int, arg2 *byte, arg3 cstring, arg4 uint64) bool
+extern func SDL_SetClipboardText(arg0 cstring) bool
+extern func SDL_SetCurrentThreadPriority(arg0 int) bool
+extern func SDL_SetCursor(arg0 *byte) bool
+extern func SDL_SetDefaultTextureScaleMode(arg0 *byte, arg1 int) bool
+extern func SDL_setenv_unsafe(arg0 cstring, arg1 cstring, arg2 int) int
+extern func SDL_SetEnvironmentVariable(arg0 *byte, arg1 cstring, arg2 cstring, arg3 bool) bool
+extern func SDL_SetError(arg0 cstring, arg1 int, arg2 int) bool
+extern func SDL_SetErrorV(arg0 cstring, arg1 int, arg2 int, arg3 int) bool
+extern func SDL_SetEventEnabled(arg0 uint32, arg1 bool)
+extern func SDL_SetEventFilter(arg0 int, arg1 *byte)
+extern func SDL_SetFloatProperty(arg0 uint64, arg1 cstring, arg2 float32) bool
+extern func SDL_SetGamepadEventsEnabled(arg0 bool)
+extern func SDL_SetGamepadLED(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8) bool
+extern func SDL_SetGamepadMapping(arg0 uint64, arg1 cstring) bool
+extern func SDL_SetGamepadPlayerIndex(arg0 *byte, arg1 int) bool
+extern func SDL_SetGamepadSensorEnabled(arg0 *byte, arg1 int, arg2 bool) bool
+extern func SDL_SetGPUAllowedFramesInFlight(arg0 *byte, arg1 uint32) bool
+extern func SDL_SetGPUBlendConstants(arg0 *byte, arg1 int)
+extern func SDL_SetGPUBufferName(arg0 *byte, arg1 *byte, arg2 cstring)
+extern func SDL_SetGPURenderState(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetGPURenderStateFragmentUniforms(arg0 *byte, arg1 uint32, arg2 *byte, arg3 uint32) bool
+extern func SDL_SetGPURenderStateSamplerBindings(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_SetGPURenderStateStorageBuffers(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_SetGPURenderStateStorageTextures(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_SetGPUScissor(arg0 *byte, arg1 *byte)
+extern func SDL_SetGPUStencilReference(arg0 *byte, arg1 uint8)
+extern func SDL_SetGPUSwapchainParameters(arg0 *byte, arg1 *byte, arg2 int, arg3 int) bool
+extern func SDL_SetGPUTextureName(arg0 *byte, arg1 *byte, arg2 cstring)
+extern func SDL_SetGPUViewport(arg0 *byte, arg1 *byte)
+extern func SDL_SetHapticAutocenter(arg0 *byte, arg1 int) bool
+extern func SDL_SetHapticGain(arg0 *byte, arg1 int) bool
+extern func SDL_SetHint(arg0 cstring, arg1 cstring) bool
+extern func SDL_SetHintWithPriority(arg0 cstring, arg1 cstring, arg2 int) bool
+extern func SDL_SetInitialized(arg0 *byte, arg1 bool)
+extern func SDL_SetJoystickEventsEnabled(arg0 bool)
+extern func SDL_SetJoystickLED(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8) bool
+extern func SDL_SetJoystickPlayerIndex(arg0 *byte, arg1 int) bool
+extern func SDL_SetJoystickSensorEnabled(arg0 *byte, arg1 int, arg2 bool) bool
+extern func SDL_SetJoystickVirtualAxis(arg0 *byte, arg1 int, arg2 int16) bool
+extern func SDL_SetJoystickVirtualBall(arg0 *byte, arg1 int, arg2 int16, arg3 int16) bool
+extern func SDL_SetJoystickVirtualButton(arg0 *byte, arg1 int, arg2 bool) bool
+extern func SDL_SetJoystickVirtualHat(arg0 *byte, arg1 int, arg2 uint8) bool
+extern func SDL_SetJoystickVirtualTouchpad(arg0 *byte, arg1 int, arg2 int, arg3 bool, arg4 float32, arg5 float32, arg6 float32) bool
+extern func SDL_SetLogOutputFunction(arg0 int, arg1 *byte)
+extern func SDL_SetLogPriorities(arg0 int)
+extern func SDL_SetLogPriority(arg0 int, arg1 int)
+extern func SDL_SetLogPriorityPrefix(arg0 int, arg1 cstring) bool
+extern func SDL_SetMemoryFunctions(arg0 int, arg1 int, arg2 int, arg3 int) bool
+extern func SDL_SetModState(arg0 int)
+extern func SDL_SetNumberProperty(arg0 uint64, arg1 cstring, arg2 int64) bool
+extern func SDL_SetPaletteColors(arg0 *byte, arg1 *byte, arg2 int, arg3 int) bool
+extern func SDL_SetPointerProperty(arg0 uint64, arg1 cstring, arg2 *byte) bool
+extern func SDL_SetPointerPropertyWithCleanup(arg0 uint64, arg1 cstring, arg2 *byte, arg3 int, arg4 *byte) bool
+extern func SDL_SetPrimarySelectionText(arg0 cstring) bool
+extern func SDL_SetRelativeMouseTransform(arg0 int, arg1 *byte) bool
+extern func SDL_SetRenderClipRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetRenderClipRectFloat(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetRenderColorScale(arg0 *byte, arg1 float32) bool
+extern func SDL_SetRenderDrawBlendMode(arg0 *byte, arg1 int) bool
+extern func SDL_SetRenderDrawColor(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8, arg4 uint8) bool
+extern func SDL_SetRenderDrawColorFloat(arg0 *byte, arg1 float32, arg2 float32, arg3 float32, arg4 float32) bool
+extern func SDL_SetRenderHDRHeadroom(arg0 *byte, arg1 float32) bool
+extern func SDL_SetRenderLogicalPresentation(arg0 *byte, arg1 int, arg2 int, arg3 int) bool
+extern func SDL_SetRenderScale(arg0 *byte, arg1 float32, arg2 float32) bool
+extern func SDL_SetRenderTarget(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetRenderTextureAddressMode(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_SetRenderViewport(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetRenderViewportFloat(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetRenderVSync(arg0 *byte, arg1 int) bool
+extern func SDL_SetScancodeName(arg0 int, arg1 cstring) bool
+extern func SDL_SetSoftwareRendererSurface(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetSoftwareRendererWindow(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetStringProperty(arg0 uint64, arg1 cstring, arg2 cstring) bool
+extern func SDL_SetSurfaceAlphaMod(arg0 *byte, arg1 uint8) bool
+extern func SDL_SetSurfaceBlendMode(arg0 *byte, arg1 int) bool
+extern func SDL_SetSurfaceClipRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetSurfaceColorKey(arg0 *byte, arg1 bool, arg2 uint32) bool
+extern func SDL_SetSurfaceColorMod(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8) bool
+extern func SDL_SetSurfaceColorspace(arg0 *byte, arg1 int) bool
+extern func SDL_SetSurfacePalette(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetSurfaceRLE(arg0 *byte, arg1 bool) bool
+extern func SDL_SetTextInputArea(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_SetTextureAlphaMod(arg0 *byte, arg1 uint8) bool
+extern func SDL_SetTextureAlphaModFloat(arg0 *byte, arg1 float32) bool
+extern func SDL_SetTextureBlendMode(arg0 *byte, arg1 int) bool
+extern func SDL_SetTextureColorMod(arg0 *byte, arg1 uint8, arg2 uint8, arg3 uint8) bool
+extern func SDL_SetTextureColorModFloat(arg0 *byte, arg1 float32, arg2 float32, arg3 float32) bool
+extern func SDL_SetTexturePalette(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetTextureScaleMode(arg0 *byte, arg1 int) bool
+extern func SDL_SetTLS(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_SetTrayEntryCallback(arg0 *byte, arg1 int, arg2 *byte)
+extern func SDL_SetTrayEntryChecked(arg0 *byte, arg1 bool)
+extern func SDL_SetTrayEntryEnabled(arg0 *byte, arg1 bool)
+extern func SDL_SetTrayEntryLabel(arg0 *byte, arg1 cstring)
+extern func SDL_SetTrayIcon(arg0 *byte, arg1 *byte)
+extern func SDL_SetTrayTooltip(arg0 *byte, arg1 cstring)
+extern func SDL_SetWindowAlwaysOnTop(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowAspectRatio(arg0 *byte, arg1 float32, arg2 float32) bool
+extern func SDL_SetWindowBordered(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowFillDocument(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowFocusable(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowFullscreen(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowFullscreenMode(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetWindowHitTest(arg0 *byte, arg1 int, arg2 *byte) bool
+extern func SDL_SetWindowIcon(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetWindowKeyboardGrab(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowMaximumSize(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_SetWindowMinimumSize(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_SetWindowModal(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowMouseGrab(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowMouseRect(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetWindowOpacity(arg0 *byte, arg1 float32) bool
+extern func SDL_SetWindowParent(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetWindowPosition(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_SetWindowProgressState(arg0 *byte, arg1 int) bool
+extern func SDL_SetWindowProgressValue(arg0 *byte, arg1 float32) bool
+extern func SDL_SetWindowRelativeMouseMode(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowResizable(arg0 *byte, arg1 bool) bool
+extern func SDL_SetWindowShape(arg0 *byte, arg1 *byte) bool
+extern func SDL_SetWindowSize(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_SetWindowsMessageHook(arg0 int, arg1 *byte)
+extern func SDL_SetWindowSurfaceVSync(arg0 *byte, arg1 int) bool
+extern func SDL_SetWindowTitle(arg0 *byte, arg1 cstring) bool
+extern func SDL_SetX11EventHook(arg0 int, arg1 *byte)
+extern func SDL_ShouldInit(arg0 *byte) bool
+extern func SDL_ShouldQuit(arg0 *byte) bool
+extern func SDL_ShowCursor() bool
+extern func SDL_ShowFileDialogWithProperties(arg0 int, arg1 int, arg2 *byte, arg3 uint64)
+extern func SDL_ShowMessageBox(arg0 *byte, arg1 *byte) bool
+extern func SDL_ShowNotification(arg0 cstring, arg1 cstring, arg2 *byte, arg3 *byte, arg4 int) uint64
+extern func SDL_ShowNotificationWithProperties(arg0 uint64) uint64
+extern func SDL_ShowOpenFileDialog(arg0 int, arg1 *byte, arg2 *byte, arg3 *byte, arg4 int, arg5 cstring, arg6 bool)
+extern func SDL_ShowOpenFolderDialog(arg0 int, arg1 *byte, arg2 *byte, arg3 cstring, arg4 bool)
+extern func SDL_ShowSaveFileDialog(arg0 int, arg1 *byte, arg2 *byte, arg3 *byte, arg4 int, arg5 cstring)
+extern func SDL_ShowSimpleMessageBox(arg0 int, arg1 cstring, arg2 cstring, arg3 *byte) bool
+extern func SDL_ShowWindow(arg0 *byte) bool
+extern func SDL_ShowWindowSystemMenu(arg0 *byte, arg1 int, arg2 int) bool
+extern func SDL_SignalAsyncIOQueue(arg0 *byte)
+extern func SDL_SignalCondition(arg0 *byte)
+extern func SDL_SignalSemaphore(arg0 *byte)
+extern func SDL_sin(arg0 float64) float64
+extern func SDL_sinf(arg0 float32) float32
+extern func SDL_snprintf(arg0 cstring, arg1 uint64, arg2 cstring, arg3 int, arg4 int) int
+extern func SDL_sqrt(arg0 float64) float64
+extern func SDL_sqrtf(arg0 float32) float32
+extern func SDL_srand(arg0 uint64)
+extern func SDL_sscanf(arg0 cstring, arg1 cstring, arg2 int, arg3 int) int
+extern func SDL_StartTextInput(arg0 *byte) bool
+extern func SDL_StartTextInputWithProperties(arg0 *byte, arg1 uint64) bool
+extern func SDL_static_cast(arg0 int, arg1 int) int
+extern func SDL_StepBackUTF8(arg0 cstring, arg1 cstring) uint32
+extern func SDL_StepUTF8(arg0 cstring, arg1 *byte) uint32
+extern func SDL_StopHapticEffect(arg0 *byte, arg1 uint64) bool
+extern func SDL_StopHapticEffects(arg0 *byte) bool
+extern func SDL_StopHapticRumble(arg0 *byte) bool
+extern func SDL_StopTextInput(arg0 *byte) bool
+extern func SDL_StorageReady(arg0 *byte) bool
+extern func SDL_strcasecmp(arg0 cstring, arg1 cstring) int
+extern func SDL_strcasestr(arg0 cstring, arg1 cstring) cstring
+extern func SDL_strchr(arg0 cstring, arg1 int) cstring
+extern func SDL_strcmp(arg0 cstring, arg1 cstring) int
+extern func SDL_strdup(arg0 cstring) cstring
+extern func SDL_StretchSurface(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 int) bool
+extern func SDL_StringToGUID(arg0 cstring) uint64
+extern func SDL_strlcat(arg0 cstring, arg1 cstring, arg2 uint64) uint64
+extern func SDL_strlcpy(arg0 cstring, arg1 cstring, arg2 uint64) uint64
+extern func SDL_strlen(arg0 cstring) uint64
+extern func SDL_strlwr(arg0 cstring) cstring
+extern func SDL_strncasecmp(arg0 cstring, arg1 cstring, arg2 uint64) int
+extern func SDL_strncmp(arg0 cstring, arg1 cstring, arg2 uint64) int
+extern func SDL_strndup(arg0 cstring, arg1 uint64) cstring
+extern func SDL_strnlen(arg0 cstring, arg1 uint64) uint64
+extern func SDL_strnstr(arg0 cstring, arg1 cstring, arg2 uint64) cstring
+extern func SDL_strpbrk(arg0 cstring, arg1 cstring) cstring
+extern func SDL_strrchr(arg0 cstring, arg1 int) cstring
+extern func SDL_strrev(arg0 cstring) cstring
+extern func SDL_strstr(arg0 cstring, arg1 cstring) cstring
+extern func SDL_strtod(arg0 cstring, arg1 cstring) float64
+extern func SDL_strtok_r(arg0 cstring, arg1 cstring, arg2 cstring) cstring
+extern func SDL_strtol(arg0 cstring, arg1 cstring, arg2 int) int
+extern func SDL_strtoll(arg0 cstring, arg1 cstring, arg2 int) int64
+extern func SDL_strtoul(arg0 cstring, arg1 cstring, arg2 int) int
+extern func SDL_strtoull(arg0 cstring, arg1 cstring, arg2 int) uint64
+extern func SDL_strupr(arg0 cstring) cstring
+extern func SDL_SubmitGPUCommandBuffer(arg0 *byte) bool
+extern func SDL_SubmitGPUCommandBufferAndAcquireFence(arg0 *byte) *byte
+extern func SDL_SurfaceHasAlternateImages(arg0 *byte) bool
+extern func SDL_SurfaceHasColorKey(arg0 *byte) bool
+extern func SDL_SurfaceHasRLE(arg0 *byte) bool
+extern func SDL_swprintf(arg0 *byte, arg1 uint64, arg2 *byte) int
+extern func SDL_SyncWindow(arg0 *byte) bool
+extern func SDL_tan(arg0 float64) float64
+extern func SDL_tanf(arg0 float32) float32
+extern func SDL_TellIO(arg0 *byte) int64
+extern func SDL_TextInputActive(arg0 *byte) bool
+extern func SDL_TimeFromWindows(arg0 uint32, arg1 uint32) int
+extern func SDL_TimeToDateTime(arg0 int, arg1 *byte, arg2 bool) bool
+extern func SDL_TimeToWindows(arg0 int, arg1 *byte, arg2 *byte)
+extern func SDL_tolower(arg0 int) int
+extern func SDL_toupper(arg0 int) int
+extern func SDL_trunc(arg0 float64) float64
+extern func SDL_truncf(arg0 float32) float32
+extern func SDL_TryLockJoysticks() bool
+extern func SDL_TryLockMutex(arg0 *byte) bool
+extern func SDL_TryLockRWLockForReading(arg0 *byte) bool
+extern func SDL_TryLockRWLockForWriting(arg0 *byte) bool
+extern func SDL_TryLockSpinlock(arg0 *byte) bool
+extern func SDL_TryWaitSemaphore(arg0 *byte) bool
+extern func SDL_UCS4ToUTF8(arg0 uint32, arg1 cstring) cstring
+extern func SDL_uitoa(arg0 uint32, arg1 cstring, arg2 int) cstring
+extern func SDL_ulltoa(arg0 uint64, arg1 cstring, arg2 int) cstring
+extern func SDL_ultoa(arg0 int, arg1 cstring, arg2 int) cstring
+extern func SDL_UnbindAudioStream(arg0 *byte)
+extern func SDL_UnbindAudioStreams(arg0 *byte, arg1 int)
+extern func SDL_UnloadObject(arg0 *byte)
+extern func SDL_UnlockAudioStream(arg0 *byte) bool
+extern func SDL_UnlockJoysticks()
+extern func SDL_UnlockMutex(arg0 *byte)
+extern func SDL_UnlockProperties(arg0 uint64)
+extern func SDL_UnlockRWLock(arg0 *byte)
+extern func SDL_UnlockSpinlock(arg0 *byte)
+extern func SDL_UnlockSurface(arg0 *byte)
+extern func SDL_UnlockTexture(arg0 *byte)
+extern func SDL_UnmapGPUTransferBuffer(arg0 *byte, arg1 *byte)
+extern func SDL_unsetenv_unsafe(arg0 cstring) int
+extern func SDL_UnsetEnvironmentVariable(arg0 *byte, arg1 cstring) bool
+extern func SDL_UpdateGamepads()
+extern func SDL_UpdateHapticEffect(arg0 *byte, arg1 uint64, arg2 *byte) bool
+extern func SDL_UpdateJoysticks()
+extern func SDL_UpdateNVTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 int, arg4 *byte, arg5 int) bool
+extern func SDL_UpdateSensors()
+extern func SDL_UpdateTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 int) bool
+extern func SDL_UpdateTrays()
+extern func SDL_UpdateWindowSurface(arg0 *byte) bool
+extern func SDL_UpdateWindowSurfaceRects(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_UpdateYUVTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 int, arg4 *byte, arg5 int, arg6 *byte, arg7 int) bool
+extern func SDL_UploadToGPUBuffer(arg0 *byte, arg1 *byte, arg2 *byte, arg3 bool)
+extern func SDL_UploadToGPUTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 bool)
+extern func SDL_utf8strlcpy(arg0 cstring, arg1 cstring, arg2 uint64) uint64
+extern func SDL_utf8strlen(arg0 cstring) uint64
+extern func SDL_utf8strnlen(arg0 cstring, arg1 uint64) uint64
+extern func SDL_vasprintf(arg0 cstring, arg1 cstring, arg2 int, arg3 int, arg4 int) int
+extern func SDL_vsnprintf(arg0 cstring, arg1 uint64, arg2 cstring, arg3 int, arg4 int, arg5 int) int
+extern func SDL_vsscanf(arg0 cstring, arg1 cstring, arg2 int, arg3 int, arg4 int) int
+extern func SDL_vswprintf(arg0 *byte, arg1 uint64, arg2 *byte, arg3 int) int
+extern func SDL_WaitAndAcquireGPUSwapchainTexture(arg0 *byte, arg1 *byte, arg2 *byte, arg3 *byte, arg4 *byte) bool
+extern func SDL_WaitAsyncIOResult(arg0 *byte, arg1 *byte, arg2 int32) bool
+extern func SDL_WaitCondition(arg0 *byte, arg1 *byte)
+extern func SDL_WaitConditionTimeout(arg0 *byte, arg1 *byte, arg2 int32) bool
+extern func SDL_WaitEvent(arg0 *byte) bool
+extern func SDL_WaitEventTimeout(arg0 *byte, arg1 int32) bool
+extern func SDL_WaitForGPUFences(arg0 *byte, arg1 bool, arg2 *byte, arg3 uint32) bool
+extern func SDL_WaitForGPUIdle(arg0 *byte) bool
+extern func SDL_WaitForGPUSwapchain(arg0 *byte, arg1 *byte) bool
+extern func SDL_WaitProcess(arg0 *byte, arg1 bool, arg2 *byte) bool
+extern func SDL_WaitSemaphore(arg0 *byte)
+extern func SDL_WaitSemaphoreTimeout(arg0 *byte, arg1 int32) bool
+extern func SDL_WaitThread(arg0 *byte, arg1 *byte)
+extern func SDL_WarpMouseGlobal(arg0 float32, arg1 float32) bool
+extern func SDL_WarpMouseInWindow(arg0 *byte, arg1 float32, arg2 float32)
+extern func SDL_WasInit(arg0 int) int
+extern func SDL_wcscasecmp(arg0 *byte, arg1 *byte) int
+extern func SDL_wcscmp(arg0 *byte, arg1 *byte) int
+extern func SDL_wcsdup(arg0 *byte) *byte
+extern func SDL_wcslcat(arg0 *byte, arg1 *byte, arg2 uint64) uint64
+extern func SDL_wcslcpy(arg0 *byte, arg1 *byte, arg2 uint64) uint64
+extern func SDL_wcslen(arg0 *byte) uint64
+extern func SDL_wcsncasecmp(arg0 *byte, arg1 *byte, arg2 uint64) int
+extern func SDL_wcsncmp(arg0 *byte, arg1 *byte, arg2 uint64) int
+extern func SDL_wcsnlen(arg0 *byte, arg1 uint64) uint64
+extern func SDL_wcsnstr(arg0 *byte, arg1 *byte, arg2 uint64) *byte
+extern func SDL_wcsstr(arg0 *byte, arg1 *byte) *byte
+extern func SDL_wcstol(arg0 *byte, arg1 *byte, arg2 int) int
+extern func SDL_wcstoll(arg0 *byte, arg1 *byte, arg2 int) int64
+extern func SDL_wcstoul(arg0 *byte, arg1 *byte, arg2 int) int
+extern func SDL_wcstoull(arg0 *byte, arg1 *byte, arg2 int) uint64
+extern func SDL_WindowHasSurface(arg0 *byte) bool
+extern func SDL_WindowSupportsGPUPresentMode(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_WindowSupportsGPUSwapchainComposition(arg0 *byte, arg1 *byte, arg2 int) bool
+extern func SDL_WriteAsyncIO(arg0 *byte, arg1 *byte, arg2 uint64, arg3 uint64, arg4 *byte, arg5 *byte) bool
+extern func SDL_WriteIO(arg0 *byte, arg1 *byte, arg2 uint64) uint64
+extern func SDL_WriteS16BE(arg0 *byte, arg1 int16) bool
+extern func SDL_WriteS16LE(arg0 *byte, arg1 int16) bool
+extern func SDL_WriteS32BE(arg0 *byte, arg1 int32) bool
+extern func SDL_WriteS32LE(arg0 *byte, arg1 int32) bool
+extern func SDL_WriteS64BE(arg0 *byte, arg1 int64) bool
+extern func SDL_WriteS64LE(arg0 *byte, arg1 int64) bool
+extern func SDL_WriteS8(arg0 *byte, arg1 int8) bool
+extern func SDL_WriteStorageFile(arg0 *byte, arg1 cstring, arg2 *byte, arg3 uint64) bool
+extern func SDL_WriteSurfacePixel(arg0 *byte, arg1 int, arg2 int, arg3 uint8, arg4 uint8, arg5 uint8, arg6 uint8) bool
+extern func SDL_WriteSurfacePixelFloat(arg0 *byte, arg1 int, arg2 int, arg3 float32, arg4 float32, arg5 float32, arg6 float32) bool
+extern func SDL_WriteU16BE(arg0 *byte, arg1 uint16) bool
+extern func SDL_WriteU16LE(arg0 *byte, arg1 uint16) bool
+extern func SDL_WriteU32BE(arg0 *byte, arg1 uint32) bool
+extern func SDL_WriteU32LE(arg0 *byte, arg1 uint32) bool
+extern func SDL_WriteU64BE(arg0 *byte, arg1 uint64) bool
+extern func SDL_WriteU64LE(arg0 *byte, arg1 uint64) bool
+extern func SDL_WriteU8(arg0 *byte, arg1 uint8) bool
+
+// Go-facing wrappers used by the first renderer example.
+cfunc Init(flags int) bool { return SDL_Init(flags) }
+cfunc SetAppMetadata(name *byte, version *byte, identifier *byte) bool {
+    return SDL_SetAppMetadata(cstring(name), cstring(version), cstring(identifier))
+}
+cfunc CreateWindow(title *byte, width int, height int, flags int) *byte {
+    return SDL_CreateWindow(cstring(title), width, height, flags)
+}
+cfunc CreateRenderer(window *byte, name *byte) *byte {
+    return SDL_CreateRenderer(window, cstring(name))
+}
+cfunc SetRenderLogicalPresentation(renderer *byte, width int, height int, mode int) bool {
+    return SDL_SetRenderLogicalPresentation(renderer, width, height, mode)
+}
+cfunc SetRenderDrawColor(renderer *byte, red uint8, green uint8, blue uint8, alpha uint8) bool {
+    return SDL_SetRenderDrawColor(renderer, red, green, blue, alpha)
+}
+cfunc RenderClear(renderer *byte) bool { return SDL_RenderClear(renderer) }
+cfunc RenderLine(renderer *byte, x1 float32, y1 float32, x2 float32, y2 float32) bool {
+    return SDL_RenderLine(renderer, x1, y1, x2, y2)
+}
+cfunc RenderLines(renderer *byte, points *byte, count int) bool {
+    return SDL_RenderLines(renderer, points, count)
+}
+cfunc RenderPresent(renderer *byte) bool { return SDL_RenderPresent(renderer) }
+cfunc PollEvent(event *byte) bool { return SDL_PollEvent(event) }
+cfunc Rand(max int32) int32 { return SDL_rand(max) }
+cfunc Cos(value float32) float32 { return SDL_cosf(value) }
+cfunc Sin(value float32) float32 { return SDL_sinf(value) }
+cfunc GetError() cstring { return SDL_GetError() }
+cfunc DestroyRenderer(renderer *byte) { SDL_DestroyRenderer(renderer) }
+cfunc DestroyWindow(window *byte) { SDL_DestroyWindow(window) }
+cfunc Quit() { SDL_Quit() }
+
+cfunc StartTextInput(window *byte) bool { return SDL_StartTextInput(window) }
+
+cfunc StopTextInput(window *byte) bool { return SDL_StopTextInput(window) }
+
+cfunc GetKeyName(key int) cstring { return SDL_GetKeyName(key) }
+
+// SDL3 type declarations generated from the SDL3 headers.
+// Opaque SDL handles are represented as native pointers.
+type SDL_AsyncIO = *byte
+type SDL_AsyncIOQueue = *byte
+type SDL_AudioStream = *byte
+type SDL_Camera = *byte
+type SDL_Condition = *byte
+type SDL_Cursor = *byte
+type SDL_DisplayModeData = *byte
+type SDL_Environment = *byte
+type SDL_Gamepad = *byte
+type SDL_GLContext = *byte
+type SDL_GPUBuffer = *byte
+type SDL_GPUCommandBuffer = *byte
+type SDL_GPUComputePass = *byte
+type SDL_GPUComputePipeline = *byte
+type SDL_GPUCopyPass = *byte
+type SDL_GPUDevice = *byte
+type SDL_GPUFence = *byte
+type SDL_GPUGraphicsPipeline = *byte
+type SDL_GPURenderPass = *byte
+type SDL_GPURenderState = *byte
+type SDL_GPUSampler = *byte
+type SDL_GPUShader = *byte
+type SDL_GPUTexture = *byte
+type SDL_GPUTransferBuffer = *byte
+type SDL_Haptic = *byte
+type SDL_hid_device = *byte
+type SDL_iconv_t = *byte
+type SDL_IOStream = *byte
+type SDL_Joystick = *byte
+type SDL_Mutex = *byte
+type SDL_Process = *byte
+type SDL_Renderer = *byte
+type SDL_RWLock = *byte
+type SDL_Semaphore = *byte
+type SDL_Sensor = *byte
+type SDL_SharedObject = *byte
+type SDL_Storage = *byte
+type SDL_Surface = *byte
+type SDL_Texture = *byte
+type SDL_Thread = *byte
+type SDL_Tray = *byte
+type SDL_TrayEntry = *byte
+type SDL_TrayMenu = *byte
+type SDL_Window = *byte
+
+// SDL enum storage types.
+type SDL_AppResult = int32
+type SDL_ArrayOrder = int32
+type SDL_AssertState = int32
+type SDL_AsyncIOResult = int32
+type SDL_AsyncIOTaskType = int32
+type SDL_AudioFormat = int32
+type SDL_BitmapOrder = int32
+type SDL_BlendFactor = int32
+type SDL_BlendOperation = int32
+type SDL_CameraPermissionState = int32
+type SDL_CameraPosition = int32
+type SDL_Capitalization = int32
+type SDL_ChromaLocation = int32
+type SDL_ColorPrimaries = int32
+type SDL_ColorRange = int32
+type SDL_Colorspace = int32
+type SDL_ColorType = int32
+type SDL_DateFormat = int32
+type SDL_DisplayOrientation = int32
+type SDL_DUMMY_ENUM = int32
+type SDL_EnumerationResult = int32
+type SDL_EventAction = int32
+type SDL_EventType = int32
+type SDL_FileDialogType = int32
+type SDL_FlashOperation = int32
+type SDL_FlipMode = int32
+type SDL_Folder = int32
+type SDL_FormFactor = int32
+type SDL_GamepadAxis = int32
+type SDL_GamepadBindingType = int32
+type SDL_GamepadButton = int32
+type SDL_GamepadButtonLabel = int32
+type SDL_GamepadCapSenseType = int32
+type SDL_GamepadType = int32
+type SDL_GLAttr = int32
+type SDL_GPUBlendFactor = int32
+type SDL_GPUBlendOp = int32
+type SDL_GPUCompareOp = int32
+type SDL_GPUCubeMapFace = int32
+type SDL_GPUCullMode = int32
+type SDL_GPUFillMode = int32
+type SDL_GPUFilter = int32
+type SDL_GPUFrontFace = int32
+type SDL_GPUIndexElementSize = int32
+type SDL_GPULoadOp = int32
+type SDL_GPUPresentMode = int32
+type SDL_GPUPrimitiveType = int32
+type SDL_GPUSampleCount = int32
+type SDL_GPUSamplerAddressMode = int32
+type SDL_GPUSamplerMipmapMode = int32
+type SDL_GPUShaderStage = int32
+type SDL_GPUStencilOp = int32
+type SDL_GPUStoreOp = int32
+type SDL_GPUSwapchainComposition = int32
+type SDL_GPUTextureFormat = int32
+type SDL_GPUTextureType = int32
+type SDL_GPUTransferBufferUsage = int32
+type SDL_GPUVertexElementFormat = int32
+type SDL_GPUVertexInputRate = int32
+type SDL_hid_bus_type = int32
+type SDL_HintPriority = int32
+type SDL_HitTestResult = int32
+type SDL_InitStatus = int32
+type SDL_IOStatus = int32
+type SDL_IOWhence = int32
+type SDL_JoystickConnectionState = int32
+type SDL_JoystickType = int32
+type SDL_LogCategory = int32
+type SDL_LogPriority = int32
+type SDL_MatrixCoefficients = int32
+type SDL_MessageBoxColorType = int32
+type SDL_MouseWheelDirection = int32
+type SDL_NotificationActionType = int32
+type SDL_NotificationPriority = int32
+type SDL_PackedLayout = int32
+type SDL_PackedOrder = int32
+type SDL_PathType = int32
+type SDL_PenAxis = int32
+type SDL_PenDeviceType = int32
+type SDL_PixelFormat = int32
+type SDL_PixelType = int32
+type SDL_PowerState = int32
+type SDL_ProcessIO = int32
+type SDL_ProgressState = int32
+type SDL_PropertyType = int32
+type SDL_RendererLogicalPresentation = int32
+type SDL_Sandbox = int32
+type SDL_ScaleMode = int32
+type SDL_Scancode = int32
+type SDL_SensorType = int32
+type SDL_SystemCursor = int32
+type SDL_SystemTheme = int32
+type SDL_TextInputType = int32
+type SDL_TextureAccess = int32
+type SDL_TextureAddressMode = int32
+type SDL_ThreadPriority = int32
+type SDL_ThreadState = int32
+type SDL_TimeFormat = int32
+type SDL_TouchDeviceType = int32
+type SDL_TransferCharacteristics = int32
+
+// SDL scalar typedefs.
+type SDL_AudioDeviceID = uint32
+type SDL_BlendMode = uint32
+type SDL_CameraID = uint32
+type SDL_DisplayID = uint32
+type SDL_EGLint = int32
+type SDL_FingerID = uint64
+type SDL_GLContextFlag = uint32
+type SDL_GLContextReleaseFlag = uint32
+type SDL_GLContextResetNotification = uint32
+type SDL_GlobFlags = uint32
+type SDL_GLProfile = uint32
+type SDL_GPUBufferUsageFlags = uint32
+type SDL_GPUColorComponentFlags = uint8
+type SDL_GPUShaderFormat = uint32
+type SDL_GPUTextureUsageFlags = uint32
+type SDL_HapticDirectionType = uint8
+type SDL_HapticEffectID = int32
+type SDL_HapticEffectType = uint16
+type SDL_HapticID = uint32
+type SDL_InitFlags = uint32
+type SDL_JoystickID = uint32
+type SDL_KeyboardID = uint32
+type SDL_Keycode = uint32
+type SDL_Keymod = uint16
+type SDL_MessageBoxButtonFlags = uint32
+type SDL_MessageBoxFlags = uint32
+type SDL_MouseButtonFlags = uint32
+type SDL_MouseID = uint32
+type SDL_NotificationID = uint32
+type SDL_PenID = uint32
+type SDL_PenInputFlags = uint32
+type SDL_PropertiesID = uint32
+type SDL_SensorID = uint32
+type SDL_SpinLock = int32
+type SDL_SurfaceFlags = uint32
+type SDL_ThreadID = uint64
+type SDL_Time = int64
+type SDL_TimerID = uint32
+type SDL_TouchID = uint64
+type SDL_TrayEntryFlags = uint32
+type SDL_WindowFlags = uint64
+type SDL_WindowID = uint32
