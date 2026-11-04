@@ -51,6 +51,37 @@ TEXT ·_hike_CreateWindow(SB), 0, $32-40
     MOVQ AX, ret+32(FP)
     RET
 
+// GetWindowFlags (passthrough: false)
+TEXT ·_hike_GetWindowFlags(SB), 0, $32-16
+    MOVQ window+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_GetWindowFlags(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
+// SetWindowResizable (passthrough: false)
+TEXT ·_hike_SetWindowResizable(SB), 0, $32-24
+    MOVQ window+0(FP), CX
+    MOVQ resizable+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_SetWindowResizable(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+16(FP)
+    RET
+
 // CreateRenderer (passthrough: false)
 TEXT ·_hike_CreateRenderer(SB), 0, $32-24
     MOVQ window+0(FP), CX
@@ -347,6 +378,18 @@ TEXT ·_hike_SetAppMetadataPtr(SB), NOSPLIT, $0-8
 // _hike_CreateWindowPtr: address of c_CreateWindow
 TEXT ·_hike_CreateWindowPtr(SB), NOSPLIT, $0-8
     LEAQ c_CreateWindow(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_GetWindowFlagsPtr: address of c_GetWindowFlags
+TEXT ·_hike_GetWindowFlagsPtr(SB), NOSPLIT, $0-8
+    LEAQ c_GetWindowFlags(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_SetWindowResizablePtr: address of c_SetWindowResizable
+TEXT ·_hike_SetWindowResizablePtr(SB), NOSPLIT, $0-8
+    LEAQ c_SetWindowResizable(SB), AX
     MOVQ AX, ret+0(FP)
     RET
 

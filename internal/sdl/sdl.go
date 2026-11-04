@@ -414,6 +414,18 @@ func CreateWindow(title *byte, width int, height int, flags int) *byte {
 	return (*byte)(unsafe.Pointer(r1))
 }
 
+// GetWindowFlags: generated from the Hike cfunc signature
+func GetWindowFlags(window *byte) int {
+	r1, _, _ := syscall.SyscallN(_hike_GetWindowFlagsPtr(), uintptr(unsafe.Pointer(window)))
+	return int(r1)
+}
+
+// SetWindowResizable: generated from the Hike cfunc signature
+func SetWindowResizable(window *byte, resizable bool) bool {
+	r1, _, _ := syscall.SyscallN(_hike_SetWindowResizablePtr(), uintptr(unsafe.Pointer(window)), hikeBoolArg(resizable))
+	return r1 != 0
+}
+
 // CreateRenderer: generated from the Hike cfunc signature
 func CreateRenderer(window *byte, name *byte) *byte {
 	r1, _, _ := syscall.SyscallN(_hike_CreateRendererPtr(), uintptr(unsafe.Pointer(window)), uintptr(unsafe.Pointer(name)))
@@ -482,7 +494,7 @@ func Sin(value float32) float32 {
 
 // GetError: generated from the Hike cfunc signature
 func GetError() string {
-	r1, _, _ := syscall.SyscallN(_hike_GetErrorPtr())
+	r1, _, _ := syscall.SyscallN(_hike_GetErrorPtr(), )
 	return hikeCStringToString((*byte)(unsafe.Pointer(r1)))
 }
 
@@ -498,7 +510,7 @@ func DestroyWindow(window *byte) {
 
 // Quit: generated from the Hike cfunc signature
 func Quit() {
-	_, _, _ = syscall.SyscallN(_hike_QuitPtr())
+	_, _, _ = syscall.SyscallN(_hike_QuitPtr(), )
 }
 
 // StartTextInput: generated from the Hike cfunc signature
@@ -528,6 +540,10 @@ func _hike_SetAppMetadata(name *byte, version *byte, identifier *byte) bool
 func _hike_SetAppMetadataPtr() uintptr
 func _hike_CreateWindow(title *byte, width int, height int, flags int) *byte
 func _hike_CreateWindowPtr() uintptr
+func _hike_GetWindowFlags(window *byte) int
+func _hike_GetWindowFlagsPtr() uintptr
+func _hike_SetWindowResizable(window *byte, resizable bool) bool
+func _hike_SetWindowResizablePtr() uintptr
 func _hike_CreateRenderer(window *byte, name *byte) *byte
 func _hike_CreateRendererPtr() uintptr
 func _hike_SetRenderLogicalPresentation(renderer *byte, width int, height int, mode int) bool

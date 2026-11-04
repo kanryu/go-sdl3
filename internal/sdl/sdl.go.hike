@@ -1282,6 +1282,10 @@ cfunc SetAppMetadata(name *byte, version *byte, identifier *byte) bool {
 cfunc CreateWindow(title *byte, width int, height int, flags int) *byte {
     return SDL_CreateWindow(cstring(title), width, height, flags)
 }
+cfunc GetWindowFlags(window *byte) int { return SDL_GetWindowFlags(window) }
+cfunc SetWindowResizable(window *byte, resizable bool) bool {
+    return SDL_SetWindowResizable(window, resizable)
+}
 cfunc CreateRenderer(window *byte, name *byte) *byte {
     return SDL_CreateRenderer(window, cstring(name))
 }

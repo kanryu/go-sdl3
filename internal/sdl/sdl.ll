@@ -17,6 +17,7 @@ declare i64 @fwrite(i8*, i64, i64, i8*)
 declare i64 @fread(i8*, i64, i64, i8*)
 declare i32 @fclose(i8*)
 declare i64 @fseek(i8*, i64, i64)
+declare i64 @_ftelli64(i8*)
 
 @__hike_mapped_write_mode = private unnamed_addr constant [3 x i8] c"wb\00"
 @__hike_mapped_read_mode = private unnamed_addr constant [3 x i8] c"rb\00"
@@ -66,7 +67,7 @@ entry:
   br i1 %missing, label %fail, label %measure
 measure:
   %end_result = call i64 @fseek(i8* %file, i64 0, i64 2)
-  %file_size = call i64 @__hike_file_tell(i8* %file)
+  %file_size = call i64 @_ftelli64(i8* %file)
   %payload_start = add i64 %root_size, 64
   %payload_size = sub i64 %file_size, %payload_start
   %header = alloca [64 x i8], align 8
@@ -2947,14 +2948,6 @@ attributes #0 = { noinline nounwind "no-builtins" }
 
 ; Hike native Windows OS runtime (64-bit, pointer=i8*)
 
-declare i64 @_ftelli64(i8*)
-
-define internal i64 @__hike_file_tell(i8* %file) {
-entry:
-  %position = call i64 @_ftelli64(i8* %file)
-  ret i64 %position
-}
-
 declare i32 @QueueUserWorkItem(i32 (i8*)*, i8*, i32)
 declare i8* @CreateEventA(i8*, i32, i32, i8*)
 declare i32 @SetEvent(i8*)
@@ -4384,6 +4377,71 @@ structured.entry.0:
   ret i8* %v5
 structured.block.end.1:
   ret i8* null
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i64 @__hike_impl_GetWindowFlags(i8* %window_arg.1) {
+structured.entry.0:
+  %window.2 = alloca i8*
+  store i8* %window_arg.1, i8** %window.2
+  %v3 = load i8*, i8** %window.2
+  %v4 = call i64 @SDL_GetWindowFlags(i8* %v3)
+  ret i64 %v4
+structured.block.end.1:
+  ret i64 zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i64 @GetWindowFlags(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i64 @__hike_impl_GetWindowFlags(i8* %arg_0.1)
+  ret i64 %v2
+structured.block.end.1:
+  ret i64 zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_SetWindowResizable(i8* %window_arg.1, i1 %resizable_arg.3) {
+structured.entry.0:
+  %window.2 = alloca i8*
+  store i8* %window_arg.1, i8** %window.2
+  %resizable.4 = alloca i1
+  store i1 %resizable_arg.3, i1* %resizable.4
+  %v5 = load i8*, i8** %window.2
+  %v6 = load i1, i1* %resizable.4
+  %v7 = call i1 @SDL_SetWindowResizable(i8* %v5, i1 %v6)
+  ret i1 %v7
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @SetWindowResizable(i8* %arg_0.1, i1 %arg_1.2) {
+structured.entry.0:
+  %v3 = call i1 @__hike_impl_SetWindowResizable(i8* %arg_0.1, i1 %arg_1.2)
+  ret i1 %v3
+structured.block.end.1:
+  ret i1 false
 structured.block.end.2:
   br label %structured.block.end.4
 structured.after.return.3:

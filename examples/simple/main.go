@@ -8,7 +8,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/kanryu/go-sdl3/internal/sdl"
+	"github.com/kanryu/go-sdl3/sdl"
 )
 
 const (
@@ -148,11 +148,15 @@ func main() {
 	}
 	defer sdl.Quit()
 
-	window := sdl.CreateWindow(cstring("GoSDL3 Simple"), 800, 600, sdlWindowResizable)
+	window := sdl.CreateWindow(cstring("GoSDL3 Simple"), 800, 600, int(sdl.WindowResizable))
 	if window == nil {
 		log.Fatalf("SDL_CreateWindow failed: %s", sdl.GetError())
 	}
 	defer sdl.DestroyWindow(window)
+	if !window.SetResizable(true) {
+		log.Printf("SDL_SetWindowResizable failed: %s", sdl.GetError())
+	}
+	fmt.Printf("window flags: 0x%016x\n", window.Flags())
 	if !sdl.StartTextInput(window) {
 		log.Printf("SDL_StartTextInput failed: %s", sdl.GetError())
 	}

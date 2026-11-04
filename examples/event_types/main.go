@@ -6,12 +6,47 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/kanryu/go-sdl3/internal/sdl"
+	"github.com/kanryu/go-sdl3/sdl"
 )
 
 func cstring(value string) *byte {
 	bytes := append([]byte(value), 0)
 	return &bytes[0]
+}
+
+func windowEventName(eventType uint32) string {
+	switch eventType {
+	case sdl.EventWindowShown:
+		return "WINDOW_SHOWN"
+	case sdl.EventWindowHidden:
+		return "WINDOW_HIDDEN"
+	case sdl.EventWindowExposed:
+		return "WINDOW_EXPOSED"
+	case sdl.EventWindowMoved:
+		return "WINDOW_MOVED"
+	case sdl.EventWindowResized:
+		return "WINDOW_RESIZED"
+	case sdl.EventWindowPixelSize:
+		return "WINDOW_PIXEL_SIZE_CHANGED"
+	case sdl.EventWindowMinimized:
+		return "WINDOW_MINIMIZED"
+	case sdl.EventWindowMaximized:
+		return "WINDOW_MAXIMIZED"
+	case sdl.EventWindowRestored:
+		return "WINDOW_RESTORED"
+	case sdl.EventWindowMouseEnter:
+		return "WINDOW_MOUSE_ENTER"
+	case sdl.EventWindowMouseLeave:
+		return "WINDOW_MOUSE_LEAVE"
+	case sdl.EventWindowFocusGained:
+		return "WINDOW_FOCUS_GAINED"
+	case sdl.EventWindowFocusLost:
+		return "WINDOW_FOCUS_LOST"
+	case sdl.EventWindowClose:
+		return "WINDOW_CLOSE_REQUESTED"
+	default:
+		return "WINDOW_UNKNOWN"
+	}
 }
 
 func main() {
@@ -22,11 +57,14 @@ func main() {
 	}
 	defer sdl.Quit()
 
-	window := sdl.CreateWindow(cstring("GoSDL3 Typed Events"), 600, 400, 0)
+	window := sdl.CreateWindow(cstring("GoSDL3 Typed Events"), 600, 400, int(sdl.WindowResizable))
 	if window == nil {
 		log.Fatalf("SDL_CreateWindow failed: %s", sdl.GetError())
 	}
 	defer sdl.DestroyWindow(window)
+	if !window.SetResizable(true) {
+		log.Printf("SDL_SetWindowResizable failed: %s", sdl.GetError())
+	}
 	if !sdl.StartTextInput(window) {
 		log.Printf("SDL_StartTextInput failed: %s", sdl.GetError())
 	}
@@ -45,7 +83,7 @@ func main() {
 			fmt.Println("quit requested")
 			return
 		case sdl.WindowEvent:
-			fmt.Printf("window event: type=0x%04x data=(%d, %d)\n", event.Type, event.Data1, event.Data2)
+			fmt.Printf("window event: %s (0x%04x) data=(%d, %d)\n", windowEventName(event.Type), event.Type, event.Data1, event.Data2)
 			if event.Type == sdl.EventWindowClose {
 				return
 			}
