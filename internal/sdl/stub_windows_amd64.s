@@ -82,6 +82,228 @@ TEXT ·_hike_SetWindowResizable(SB), 0, $32-24
     MOVQ AX, ret+16(FP)
     RET
 
+// CreateGPUDevice (passthrough: false)
+TEXT ·_hike_CreateGPUDevice(SB), 0, $32-32
+    MOVQ format+0(FP), CX
+    MOVQ debug+8(FP), DX
+    MOVQ name+16(FP), R8
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_CreateGPUDevice(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+24(FP)
+    RET
+
+// DestroyGPUDevice (passthrough: false)
+TEXT ·_hike_DestroyGPUDevice(SB), 0, $32-8
+    MOVQ device+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_DestroyGPUDevice(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
+// ClaimWindowForGPUDevice (passthrough: false)
+TEXT ·_hike_ClaimWindowForGPUDevice(SB), 0, $32-24
+    MOVQ device+0(FP), CX
+    MOVQ window+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_ClaimWindowForGPUDevice(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+16(FP)
+    RET
+
+// ReleaseWindowFromGPUDevice (passthrough: false)
+TEXT ·_hike_ReleaseWindowFromGPUDevice(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ window+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_ReleaseWindowFromGPUDevice(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
+// AcquireGPUCommandBuffer (passthrough: false)
+TEXT ·_hike_AcquireGPUCommandBuffer(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_AcquireGPUCommandBuffer(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
+// AcquireGPUSwapchainTexture (passthrough: false)
+TEXT ·_hike_AcquireGPUSwapchainTexture(SB), 0, $32-48
+    MOVQ commandBuffer+0(FP), CX
+    MOVQ window+8(FP), DX
+    MOVQ texture+16(FP), R8
+    MOVQ width+24(FP), R9
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    MOVQ height+32(FP), AX
+    MOVQ AX, 32(SP)
+    CALL c_AcquireGPUSwapchainTexture(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+40(FP)
+    RET
+
+// SubmitGPUCommandBuffer (passthrough: false)
+TEXT ·_hike_SubmitGPUCommandBuffer(SB), 0, $32-16
+    MOVQ commandBuffer+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_SubmitGPUCommandBuffer(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
+// CancelGPUCommandBuffer (passthrough: false)
+TEXT ·_hike_CancelGPUCommandBuffer(SB), 0, $32-16
+    MOVQ commandBuffer+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_CancelGPUCommandBuffer(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
+// SetGPUSwapchainParameters (passthrough: false)
+TEXT ·_hike_SetGPUSwapchainParameters(SB), 0, $32-40
+    MOVQ device+0(FP), CX
+    MOVQ window+8(FP), DX
+    MOVQ composition+16(FP), R8
+    MOVQ presentMode+24(FP), R9
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_SetGPUSwapchainParameters(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+32(FP)
+    RET
+
+// GetGPUDeviceDriver (passthrough: false)
+TEXT ·_hike_GetGPUDeviceDriver(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_GetGPUDeviceDriver(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
+// GetGPUShaderFormats (passthrough: false)
+TEXT ·_hike_GetGPUShaderFormats(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_GetGPUShaderFormats(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
+// GetGPUSwapchainTextureFormat (passthrough: false)
+TEXT ·_hike_GetGPUSwapchainTextureFormat(SB), 0, $32-24
+    MOVQ device+0(FP), CX
+    MOVQ window+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_GetGPUSwapchainTextureFormat(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+16(FP)
+    RET
+
+// WaitForGPUSwapchain (passthrough: false)
+TEXT ·_hike_WaitForGPUSwapchain(SB), 0, $32-24
+    MOVQ device+0(FP), CX
+    MOVQ window+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_WaitForGPUSwapchain(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+16(FP)
+    RET
+
+// WaitForGPUIdle (passthrough: false)
+TEXT ·_hike_WaitForGPUIdle(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_WaitForGPUIdle(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+8(FP)
+    RET
+
 // CreateRenderer (passthrough: false)
 TEXT ·_hike_CreateRenderer(SB), 0, $32-24
     MOVQ window+0(FP), CX
@@ -96,6 +318,28 @@ TEXT ·_hike_CreateRenderer(SB), 0, $32-24
     ADDQ $48, SP
     ADDQ R11, SP
     MOVQ AX, ret+16(FP)
+    RET
+
+// RenderGeometry (passthrough: false)
+TEXT ·_hike_RenderGeometry(SB), 0, $32-56
+    MOVQ renderer+0(FP), CX
+    MOVQ texture+8(FP), DX
+    MOVQ vertices+16(FP), R8
+    MOVQ vertexCount+24(FP), R9
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $64, SP
+    MOVQ R11, 56(SP)
+    MOVQ indices+32(FP), AX
+    MOVQ AX, 32(SP)
+    MOVQ indexCount+40(FP), AX
+    MOVQ AX, 40(SP)
+    CALL c_RenderGeometry(SB)
+    MOVQ 56(SP), R11
+    ADDQ $64, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+48(FP)
     RET
 
 // SetRenderLogicalPresentation (passthrough: false)
@@ -393,9 +637,99 @@ TEXT ·_hike_SetWindowResizablePtr(SB), NOSPLIT, $0-8
     MOVQ AX, ret+0(FP)
     RET
 
+// _hike_CreateGPUDevicePtr: address of c_CreateGPUDevice
+TEXT ·_hike_CreateGPUDevicePtr(SB), NOSPLIT, $0-8
+    LEAQ c_CreateGPUDevice(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_DestroyGPUDevicePtr: address of c_DestroyGPUDevice
+TEXT ·_hike_DestroyGPUDevicePtr(SB), NOSPLIT, $0-8
+    LEAQ c_DestroyGPUDevice(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_ClaimWindowForGPUDevicePtr: address of c_ClaimWindowForGPUDevice
+TEXT ·_hike_ClaimWindowForGPUDevicePtr(SB), NOSPLIT, $0-8
+    LEAQ c_ClaimWindowForGPUDevice(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_ReleaseWindowFromGPUDevicePtr: address of c_ReleaseWindowFromGPUDevice
+TEXT ·_hike_ReleaseWindowFromGPUDevicePtr(SB), NOSPLIT, $0-8
+    LEAQ c_ReleaseWindowFromGPUDevice(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_AcquireGPUCommandBufferPtr: address of c_AcquireGPUCommandBuffer
+TEXT ·_hike_AcquireGPUCommandBufferPtr(SB), NOSPLIT, $0-8
+    LEAQ c_AcquireGPUCommandBuffer(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_AcquireGPUSwapchainTexturePtr: address of c_AcquireGPUSwapchainTexture
+TEXT ·_hike_AcquireGPUSwapchainTexturePtr(SB), NOSPLIT, $0-8
+    LEAQ c_AcquireGPUSwapchainTexture(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_SubmitGPUCommandBufferPtr: address of c_SubmitGPUCommandBuffer
+TEXT ·_hike_SubmitGPUCommandBufferPtr(SB), NOSPLIT, $0-8
+    LEAQ c_SubmitGPUCommandBuffer(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_CancelGPUCommandBufferPtr: address of c_CancelGPUCommandBuffer
+TEXT ·_hike_CancelGPUCommandBufferPtr(SB), NOSPLIT, $0-8
+    LEAQ c_CancelGPUCommandBuffer(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_SetGPUSwapchainParametersPtr: address of c_SetGPUSwapchainParameters
+TEXT ·_hike_SetGPUSwapchainParametersPtr(SB), NOSPLIT, $0-8
+    LEAQ c_SetGPUSwapchainParameters(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_GetGPUDeviceDriverPtr: address of c_GetGPUDeviceDriver
+TEXT ·_hike_GetGPUDeviceDriverPtr(SB), NOSPLIT, $0-8
+    LEAQ c_GetGPUDeviceDriver(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_GetGPUShaderFormatsPtr: address of c_GetGPUShaderFormats
+TEXT ·_hike_GetGPUShaderFormatsPtr(SB), NOSPLIT, $0-8
+    LEAQ c_GetGPUShaderFormats(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_GetGPUSwapchainTextureFormatPtr: address of c_GetGPUSwapchainTextureFormat
+TEXT ·_hike_GetGPUSwapchainTextureFormatPtr(SB), NOSPLIT, $0-8
+    LEAQ c_GetGPUSwapchainTextureFormat(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_WaitForGPUSwapchainPtr: address of c_WaitForGPUSwapchain
+TEXT ·_hike_WaitForGPUSwapchainPtr(SB), NOSPLIT, $0-8
+    LEAQ c_WaitForGPUSwapchain(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_WaitForGPUIdlePtr: address of c_WaitForGPUIdle
+TEXT ·_hike_WaitForGPUIdlePtr(SB), NOSPLIT, $0-8
+    LEAQ c_WaitForGPUIdle(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
 // _hike_CreateRendererPtr: address of c_CreateRenderer
 TEXT ·_hike_CreateRendererPtr(SB), NOSPLIT, $0-8
     LEAQ c_CreateRenderer(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_RenderGeometryPtr: address of c_RenderGeometry
+TEXT ·_hike_RenderGeometryPtr(SB), NOSPLIT, $0-8
+    LEAQ c_RenderGeometry(SB), AX
     MOVQ AX, ret+0(FP)
     RET
 

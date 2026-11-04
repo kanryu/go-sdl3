@@ -1286,8 +1286,45 @@ cfunc GetWindowFlags(window *byte) int { return SDL_GetWindowFlags(window) }
 cfunc SetWindowResizable(window *byte, resizable bool) bool {
     return SDL_SetWindowResizable(window, resizable)
 }
+cfunc CreateGPUDevice(format int, debug bool, name *byte) *byte {
+    return SDL_CreateGPUDevice(format, debug, cstring(name))
+}
+cfunc DestroyGPUDevice(device *byte) { SDL_DestroyGPUDevice(device) }
+cfunc ClaimWindowForGPUDevice(device *byte, window *byte) bool {
+    return SDL_ClaimWindowForGPUDevice(device, window)
+}
+cfunc ReleaseWindowFromGPUDevice(device *byte, window *byte) {
+    SDL_ReleaseWindowFromGPUDevice(device, window)
+}
+cfunc AcquireGPUCommandBuffer(device *byte) *byte {
+    return SDL_AcquireGPUCommandBuffer(device)
+}
+cfunc AcquireGPUSwapchainTexture(commandBuffer *byte, window *byte, texture *byte, width *byte, height *byte) bool {
+    return SDL_AcquireGPUSwapchainTexture(commandBuffer, window, texture, width, height)
+}
+cfunc SubmitGPUCommandBuffer(commandBuffer *byte) bool {
+    return SDL_SubmitGPUCommandBuffer(commandBuffer)
+}
+cfunc CancelGPUCommandBuffer(commandBuffer *byte) bool {
+    return SDL_CancelGPUCommandBuffer(commandBuffer)
+}
+cfunc SetGPUSwapchainParameters(device *byte, window *byte, composition int, presentMode int) bool {
+    return SDL_SetGPUSwapchainParameters(device, window, composition, presentMode)
+}
+cfunc GetGPUDeviceDriver(device *byte) cstring { return SDL_GetGPUDeviceDriver(device) }
+cfunc GetGPUShaderFormats(device *byte) int { return SDL_GetGPUShaderFormats(device) }
+cfunc GetGPUSwapchainTextureFormat(device *byte, window *byte) int {
+    return SDL_GetGPUSwapchainTextureFormat(device, window)
+}
+cfunc WaitForGPUSwapchain(device *byte, window *byte) bool {
+    return SDL_WaitForGPUSwapchain(device, window)
+}
+cfunc WaitForGPUIdle(device *byte) bool { return SDL_WaitForGPUIdle(device) }
 cfunc CreateRenderer(window *byte, name *byte) *byte {
     return SDL_CreateRenderer(window, cstring(name))
+}
+cfunc RenderGeometry(renderer *byte, texture *byte, vertices *byte, vertexCount int, indices *byte, indexCount int) bool {
+    return SDL_RenderGeometry(renderer, texture, vertices, vertexCount, indices, indexCount)
 }
 cfunc SetRenderLogicalPresentation(renderer *byte, width int, height int, mode int) bool {
     return SDL_SetRenderLogicalPresentation(renderer, width, height, mode)

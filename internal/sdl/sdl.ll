@@ -4450,6 +4450,479 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
+define i8* @__hike_impl_CreateGPUDevice(i64 %format_arg.1, i1 %debug_arg.3, i8* %name_arg.5) {
+structured.entry.0:
+  %format.2 = alloca i64
+  store i64 %format_arg.1, i64* %format.2
+  %debug.4 = alloca i1
+  store i1 %debug_arg.3, i1* %debug.4
+  %name.6 = alloca i8*
+  store i8* %name_arg.5, i8** %name.6
+  %v7 = load i64, i64* %format.2
+  %v8 = load i1, i1* %debug.4
+  %v9 = load i8*, i8** %name.6
+  %v10 = call i8* @SDL_CreateGPUDevice(i64 %v7, i1 %v8, i8* %v9)
+  ret i8* %v10
+structured.block.end.1:
+  ret i8* null
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i8* @CreateGPUDevice(i64 %arg_0.1, i1 %arg_1.2, i8* %arg_2.3) {
+structured.entry.0:
+  %v4 = call i8* @__hike_impl_CreateGPUDevice(i64 %arg_0.1, i1 %arg_1.2, i8* %arg_2.3)
+  ret i8* %v4
+structured.block.end.1:
+  ret i8* null
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define void @__hike_impl_DestroyGPUDevice(i8* %device_arg.1) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %v3 = load i8*, i8** %device.2
+  call void @SDL_DestroyGPUDevice(i8* %v3)
+  ret void
+structured.block.end.1:
+  ret void
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport void @DestroyGPUDevice(i8* %arg_0.1) {
+structured.entry.0:
+  call void @__hike_impl_DestroyGPUDevice(i8* %arg_0.1)
+  ret void
+structured.block.end.1:
+  ret void
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_ClaimWindowForGPUDevice(i8* %device_arg.1, i8* %window_arg.3) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %window.4 = alloca i8*
+  store i8* %window_arg.3, i8** %window.4
+  %v5 = load i8*, i8** %device.2
+  %v6 = load i8*, i8** %window.4
+  %v7 = call i1 @SDL_ClaimWindowForGPUDevice(i8* %v5, i8* %v6)
+  ret i1 %v7
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @ClaimWindowForGPUDevice(i8* %arg_0.1, i8* %arg_1.2) {
+structured.entry.0:
+  %v3 = call i1 @__hike_impl_ClaimWindowForGPUDevice(i8* %arg_0.1, i8* %arg_1.2)
+  ret i1 %v3
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define void @__hike_impl_ReleaseWindowFromGPUDevice(i8* %device_arg.1, i8* %window_arg.3) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %window.4 = alloca i8*
+  store i8* %window_arg.3, i8** %window.4
+  %v5 = load i8*, i8** %device.2
+  %v6 = load i8*, i8** %window.4
+  call void @SDL_ReleaseWindowFromGPUDevice(i8* %v5, i8* %v6)
+  ret void
+structured.block.end.1:
+  ret void
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport void @ReleaseWindowFromGPUDevice(i8* %arg_0.1, i8* %arg_1.2) {
+structured.entry.0:
+  call void @__hike_impl_ReleaseWindowFromGPUDevice(i8* %arg_0.1, i8* %arg_1.2)
+  ret void
+structured.block.end.1:
+  ret void
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i8* @__hike_impl_AcquireGPUCommandBuffer(i8* %device_arg.1) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %v3 = load i8*, i8** %device.2
+  %v4 = call i8* @SDL_AcquireGPUCommandBuffer(i8* %v3)
+  ret i8* %v4
+structured.block.end.1:
+  ret i8* null
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i8* @AcquireGPUCommandBuffer(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i8* @__hike_impl_AcquireGPUCommandBuffer(i8* %arg_0.1)
+  ret i8* %v2
+structured.block.end.1:
+  ret i8* null
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_AcquireGPUSwapchainTexture(i8* %commandBuffer_arg.1, i8* %window_arg.3, i8* %texture_arg.5, i8* %width_arg.7, i8* %height_arg.9) {
+structured.entry.0:
+  %commandBuffer.2 = alloca i8*
+  store i8* %commandBuffer_arg.1, i8** %commandBuffer.2
+  %window.4 = alloca i8*
+  store i8* %window_arg.3, i8** %window.4
+  %texture.6 = alloca i8*
+  store i8* %texture_arg.5, i8** %texture.6
+  %width.8 = alloca i8*
+  store i8* %width_arg.7, i8** %width.8
+  %height.10 = alloca i8*
+  store i8* %height_arg.9, i8** %height.10
+  %v11 = load i8*, i8** %commandBuffer.2
+  %v12 = load i8*, i8** %window.4
+  %v13 = load i8*, i8** %texture.6
+  %v14 = load i8*, i8** %width.8
+  %v15 = load i8*, i8** %height.10
+  %v16 = call i1 @SDL_AcquireGPUSwapchainTexture(i8* %v11, i8* %v12, i8* %v13, i8* %v14, i8* %v15)
+  ret i1 %v16
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @AcquireGPUSwapchainTexture(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i8* %arg_3.4, i8* %arg_4.5) {
+structured.entry.0:
+  %v6 = call i1 @__hike_impl_AcquireGPUSwapchainTexture(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i8* %arg_3.4, i8* %arg_4.5)
+  ret i1 %v6
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_SubmitGPUCommandBuffer(i8* %commandBuffer_arg.1) {
+structured.entry.0:
+  %commandBuffer.2 = alloca i8*
+  store i8* %commandBuffer_arg.1, i8** %commandBuffer.2
+  %v3 = load i8*, i8** %commandBuffer.2
+  %v4 = call i1 @SDL_SubmitGPUCommandBuffer(i8* %v3)
+  ret i1 %v4
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @SubmitGPUCommandBuffer(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i1 @__hike_impl_SubmitGPUCommandBuffer(i8* %arg_0.1)
+  ret i1 %v2
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_CancelGPUCommandBuffer(i8* %commandBuffer_arg.1) {
+structured.entry.0:
+  %commandBuffer.2 = alloca i8*
+  store i8* %commandBuffer_arg.1, i8** %commandBuffer.2
+  %v3 = load i8*, i8** %commandBuffer.2
+  %v4 = call i1 @SDL_CancelGPUCommandBuffer(i8* %v3)
+  ret i1 %v4
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @CancelGPUCommandBuffer(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i1 @__hike_impl_CancelGPUCommandBuffer(i8* %arg_0.1)
+  ret i1 %v2
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_SetGPUSwapchainParameters(i8* %device_arg.1, i8* %window_arg.3, i64 %composition_arg.5, i64 %presentMode_arg.7) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %window.4 = alloca i8*
+  store i8* %window_arg.3, i8** %window.4
+  %composition.6 = alloca i64
+  store i64 %composition_arg.5, i64* %composition.6
+  %presentMode.8 = alloca i64
+  store i64 %presentMode_arg.7, i64* %presentMode.8
+  %v9 = load i8*, i8** %device.2
+  %v10 = load i8*, i8** %window.4
+  %v11 = load i64, i64* %composition.6
+  %v12 = load i64, i64* %presentMode.8
+  %v13 = call i1 @SDL_SetGPUSwapchainParameters(i8* %v9, i8* %v10, i64 %v11, i64 %v12)
+  ret i1 %v13
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @SetGPUSwapchainParameters(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
+structured.entry.0:
+  %v5 = call i1 @__hike_impl_SetGPUSwapchainParameters(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3, i64 %arg_3.4)
+  ret i1 %v5
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i8* @__hike_impl_GetGPUDeviceDriver(i8* %device_arg.1) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %v3 = load i8*, i8** %device.2
+  %v4 = call i8* @SDL_GetGPUDeviceDriver(i8* %v3)
+  ret i8* %v4
+structured.block.end.1:
+  ret i8* zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i8* @GetGPUDeviceDriver(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i8* @__hike_impl_GetGPUDeviceDriver(i8* %arg_0.1)
+  ret i8* %v2
+structured.block.end.1:
+  ret i8* zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i64 @__hike_impl_GetGPUShaderFormats(i8* %device_arg.1) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %v3 = load i8*, i8** %device.2
+  %v4 = call i64 @SDL_GetGPUShaderFormats(i8* %v3)
+  ret i64 %v4
+structured.block.end.1:
+  ret i64 zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i64 @GetGPUShaderFormats(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i64 @__hike_impl_GetGPUShaderFormats(i8* %arg_0.1)
+  ret i64 %v2
+structured.block.end.1:
+  ret i64 zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i64 @__hike_impl_GetGPUSwapchainTextureFormat(i8* %device_arg.1, i8* %window_arg.3) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %window.4 = alloca i8*
+  store i8* %window_arg.3, i8** %window.4
+  %v5 = load i8*, i8** %device.2
+  %v6 = load i8*, i8** %window.4
+  %v7 = call i64 @SDL_GetGPUSwapchainTextureFormat(i8* %v5, i8* %v6)
+  ret i64 %v7
+structured.block.end.1:
+  ret i64 zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i64 @GetGPUSwapchainTextureFormat(i8* %arg_0.1, i8* %arg_1.2) {
+structured.entry.0:
+  %v3 = call i64 @__hike_impl_GetGPUSwapchainTextureFormat(i8* %arg_0.1, i8* %arg_1.2)
+  ret i64 %v3
+structured.block.end.1:
+  ret i64 zeroinitializer
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_WaitForGPUSwapchain(i8* %device_arg.1, i8* %window_arg.3) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %window.4 = alloca i8*
+  store i8* %window_arg.3, i8** %window.4
+  %v5 = load i8*, i8** %device.2
+  %v6 = load i8*, i8** %window.4
+  %v7 = call i1 @SDL_WaitForGPUSwapchain(i8* %v5, i8* %v6)
+  ret i1 %v7
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @WaitForGPUSwapchain(i8* %arg_0.1, i8* %arg_1.2) {
+structured.entry.0:
+  %v3 = call i1 @__hike_impl_WaitForGPUSwapchain(i8* %arg_0.1, i8* %arg_1.2)
+  ret i1 %v3
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_WaitForGPUIdle(i8* %device_arg.1) {
+structured.entry.0:
+  %device.2 = alloca i8*
+  store i8* %device_arg.1, i8** %device.2
+  %v3 = load i8*, i8** %device.2
+  %v4 = call i1 @SDL_WaitForGPUIdle(i8* %v3)
+  ret i1 %v4
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @WaitForGPUIdle(i8* %arg_0.1) {
+structured.entry.0:
+  %v2 = call i1 @__hike_impl_WaitForGPUIdle(i8* %arg_0.1)
+  ret i1 %v2
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
 define i8* @__hike_impl_CreateRenderer(i8* %window_arg.1, i8* %name_arg.3) {
 structured.entry.0:
   %window.2 = alloca i8*
@@ -4476,6 +4949,52 @@ structured.entry.0:
   ret i8* %v3
 structured.block.end.1:
   ret i8* null
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define i1 @__hike_impl_RenderGeometry(i8* %renderer_arg.1, i8* %texture_arg.3, i8* %vertices_arg.5, i64 %vertexCount_arg.7, i8* %indices_arg.9, i64 %indexCount_arg.11) {
+structured.entry.0:
+  %renderer.2 = alloca i8*
+  store i8* %renderer_arg.1, i8** %renderer.2
+  %texture.4 = alloca i8*
+  store i8* %texture_arg.3, i8** %texture.4
+  %vertices.6 = alloca i8*
+  store i8* %vertices_arg.5, i8** %vertices.6
+  %vertexCount.8 = alloca i64
+  store i64 %vertexCount_arg.7, i64* %vertexCount.8
+  %indices.10 = alloca i8*
+  store i8* %indices_arg.9, i8** %indices.10
+  %indexCount.12 = alloca i64
+  store i64 %indexCount_arg.11, i64* %indexCount.12
+  %v13 = load i8*, i8** %renderer.2
+  %v14 = load i8*, i8** %texture.4
+  %v15 = load i8*, i8** %vertices.6
+  %v16 = load i64, i64* %vertexCount.8
+  %v17 = load i8*, i8** %indices.10
+  %v18 = load i64, i64* %indexCount.12
+  %v19 = call i1 @SDL_RenderGeometry(i8* %v13, i8* %v14, i8* %v15, i64 %v16, i8* %v17, i64 %v18)
+  ret i1 %v19
+structured.block.end.1:
+  ret i1 false
+structured.block.end.2:
+  br label %structured.block.end.4
+structured.after.return.3:
+  br label %structured.block.end.2
+structured.block.end.4:
+  br label %structured.block.end.1
+}
+
+define dllexport i1 @RenderGeometry(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i64 %arg_3.4, i8* %arg_4.5, i64 %arg_5.6) {
+structured.entry.0:
+  %v7 = call i1 @__hike_impl_RenderGeometry(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i64 %arg_3.4, i8* %arg_4.5, i64 %arg_5.6)
+  ret i1 %v7
+structured.block.end.1:
+  ret i1 false
 structured.block.end.2:
   br label %structured.block.end.4
 structured.after.return.3:

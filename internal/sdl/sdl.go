@@ -426,10 +426,98 @@ func SetWindowResizable(window *byte, resizable bool) bool {
 	return r1 != 0
 }
 
+// CreateGPUDevice: generated from the Hike cfunc signature
+func CreateGPUDevice(format int, debug bool, name *byte) *byte {
+	r1, _, _ := syscall.SyscallN(_hike_CreateGPUDevicePtr(), uintptr(format), hikeBoolArg(debug), uintptr(unsafe.Pointer(name)))
+	return (*byte)(unsafe.Pointer(r1))
+}
+
+// DestroyGPUDevice: generated from the Hike cfunc signature
+func DestroyGPUDevice(device *byte) {
+	_, _, _ = syscall.SyscallN(_hike_DestroyGPUDevicePtr(), uintptr(unsafe.Pointer(device)))
+}
+
+// ClaimWindowForGPUDevice: generated from the Hike cfunc signature
+func ClaimWindowForGPUDevice(device *byte, window *byte) bool {
+	r1, _, _ := syscall.SyscallN(_hike_ClaimWindowForGPUDevicePtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(window)))
+	return r1 != 0
+}
+
+// ReleaseWindowFromGPUDevice: generated from the Hike cfunc signature
+func ReleaseWindowFromGPUDevice(device *byte, window *byte) {
+	_, _, _ = syscall.SyscallN(_hike_ReleaseWindowFromGPUDevicePtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(window)))
+}
+
+// AcquireGPUCommandBuffer: generated from the Hike cfunc signature
+func AcquireGPUCommandBuffer(device *byte) *byte {
+	r1, _, _ := syscall.SyscallN(_hike_AcquireGPUCommandBufferPtr(), uintptr(unsafe.Pointer(device)))
+	return (*byte)(unsafe.Pointer(r1))
+}
+
+// AcquireGPUSwapchainTexture: generated from the Hike cfunc signature
+func AcquireGPUSwapchainTexture(commandBuffer *byte, window *byte, texture *byte, width *byte, height *byte) bool {
+	r1, _, _ := syscall.SyscallN(_hike_AcquireGPUSwapchainTexturePtr(), uintptr(unsafe.Pointer(commandBuffer)), uintptr(unsafe.Pointer(window)), uintptr(unsafe.Pointer(texture)), uintptr(unsafe.Pointer(width)), uintptr(unsafe.Pointer(height)))
+	return r1 != 0
+}
+
+// SubmitGPUCommandBuffer: generated from the Hike cfunc signature
+func SubmitGPUCommandBuffer(commandBuffer *byte) bool {
+	r1, _, _ := syscall.SyscallN(_hike_SubmitGPUCommandBufferPtr(), uintptr(unsafe.Pointer(commandBuffer)))
+	return r1 != 0
+}
+
+// CancelGPUCommandBuffer: generated from the Hike cfunc signature
+func CancelGPUCommandBuffer(commandBuffer *byte) bool {
+	r1, _, _ := syscall.SyscallN(_hike_CancelGPUCommandBufferPtr(), uintptr(unsafe.Pointer(commandBuffer)))
+	return r1 != 0
+}
+
+// SetGPUSwapchainParameters: generated from the Hike cfunc signature
+func SetGPUSwapchainParameters(device *byte, window *byte, composition int, presentMode int) bool {
+	r1, _, _ := syscall.SyscallN(_hike_SetGPUSwapchainParametersPtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(window)), uintptr(composition), uintptr(presentMode))
+	return r1 != 0
+}
+
+// GetGPUDeviceDriver: generated from the Hike cfunc signature
+func GetGPUDeviceDriver(device *byte) string {
+	r1, _, _ := syscall.SyscallN(_hike_GetGPUDeviceDriverPtr(), uintptr(unsafe.Pointer(device)))
+	return hikeCStringToString((*byte)(unsafe.Pointer(r1)))
+}
+
+// GetGPUShaderFormats: generated from the Hike cfunc signature
+func GetGPUShaderFormats(device *byte) int {
+	r1, _, _ := syscall.SyscallN(_hike_GetGPUShaderFormatsPtr(), uintptr(unsafe.Pointer(device)))
+	return int(r1)
+}
+
+// GetGPUSwapchainTextureFormat: generated from the Hike cfunc signature
+func GetGPUSwapchainTextureFormat(device *byte, window *byte) int {
+	r1, _, _ := syscall.SyscallN(_hike_GetGPUSwapchainTextureFormatPtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(window)))
+	return int(r1)
+}
+
+// WaitForGPUSwapchain: generated from the Hike cfunc signature
+func WaitForGPUSwapchain(device *byte, window *byte) bool {
+	r1, _, _ := syscall.SyscallN(_hike_WaitForGPUSwapchainPtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(window)))
+	return r1 != 0
+}
+
+// WaitForGPUIdle: generated from the Hike cfunc signature
+func WaitForGPUIdle(device *byte) bool {
+	r1, _, _ := syscall.SyscallN(_hike_WaitForGPUIdlePtr(), uintptr(unsafe.Pointer(device)))
+	return r1 != 0
+}
+
 // CreateRenderer: generated from the Hike cfunc signature
 func CreateRenderer(window *byte, name *byte) *byte {
 	r1, _, _ := syscall.SyscallN(_hike_CreateRendererPtr(), uintptr(unsafe.Pointer(window)), uintptr(unsafe.Pointer(name)))
 	return (*byte)(unsafe.Pointer(r1))
+}
+
+// RenderGeometry: generated from the Hike cfunc signature
+func RenderGeometry(renderer *byte, texture *byte, vertices *byte, vertexCount int, indices *byte, indexCount int) bool {
+	r1, _, _ := syscall.SyscallN(_hike_RenderGeometryPtr(), uintptr(unsafe.Pointer(renderer)), uintptr(unsafe.Pointer(texture)), uintptr(unsafe.Pointer(vertices)), uintptr(vertexCount), uintptr(unsafe.Pointer(indices)), uintptr(indexCount))
+	return r1 != 0
 }
 
 // SetRenderLogicalPresentation: generated from the Hike cfunc signature
@@ -544,8 +632,38 @@ func _hike_GetWindowFlags(window *byte) int
 func _hike_GetWindowFlagsPtr() uintptr
 func _hike_SetWindowResizable(window *byte, resizable bool) bool
 func _hike_SetWindowResizablePtr() uintptr
+func _hike_CreateGPUDevice(format int, debug bool, name *byte) *byte
+func _hike_CreateGPUDevicePtr() uintptr
+func _hike_DestroyGPUDevice(device *byte)
+func _hike_DestroyGPUDevicePtr() uintptr
+func _hike_ClaimWindowForGPUDevice(device *byte, window *byte) bool
+func _hike_ClaimWindowForGPUDevicePtr() uintptr
+func _hike_ReleaseWindowFromGPUDevice(device *byte, window *byte)
+func _hike_ReleaseWindowFromGPUDevicePtr() uintptr
+func _hike_AcquireGPUCommandBuffer(device *byte) *byte
+func _hike_AcquireGPUCommandBufferPtr() uintptr
+func _hike_AcquireGPUSwapchainTexture(commandBuffer *byte, window *byte, texture *byte, width *byte, height *byte) bool
+func _hike_AcquireGPUSwapchainTexturePtr() uintptr
+func _hike_SubmitGPUCommandBuffer(commandBuffer *byte) bool
+func _hike_SubmitGPUCommandBufferPtr() uintptr
+func _hike_CancelGPUCommandBuffer(commandBuffer *byte) bool
+func _hike_CancelGPUCommandBufferPtr() uintptr
+func _hike_SetGPUSwapchainParameters(device *byte, window *byte, composition int, presentMode int) bool
+func _hike_SetGPUSwapchainParametersPtr() uintptr
+func _hike_GetGPUDeviceDriver(device *byte) *byte
+func _hike_GetGPUDeviceDriverPtr() uintptr
+func _hike_GetGPUShaderFormats(device *byte) int
+func _hike_GetGPUShaderFormatsPtr() uintptr
+func _hike_GetGPUSwapchainTextureFormat(device *byte, window *byte) int
+func _hike_GetGPUSwapchainTextureFormatPtr() uintptr
+func _hike_WaitForGPUSwapchain(device *byte, window *byte) bool
+func _hike_WaitForGPUSwapchainPtr() uintptr
+func _hike_WaitForGPUIdle(device *byte) bool
+func _hike_WaitForGPUIdlePtr() uintptr
 func _hike_CreateRenderer(window *byte, name *byte) *byte
 func _hike_CreateRendererPtr() uintptr
+func _hike_RenderGeometry(renderer *byte, texture *byte, vertices *byte, vertexCount int, indices *byte, indexCount int) bool
+func _hike_RenderGeometryPtr() uintptr
 func _hike_SetRenderLogicalPresentation(renderer *byte, width int, height int, mode int) bool
 func _hike_SetRenderLogicalPresentationPtr() uintptr
 func _hike_SetRenderDrawColor(renderer *byte, red uint8, green uint8, blue uint8, alpha uint8) bool
