@@ -1320,6 +1320,24 @@ cfunc WaitForGPUSwapchain(device *byte, window *byte) bool {
     return SDL_WaitForGPUSwapchain(device, window)
 }
 cfunc WaitForGPUIdle(device *byte) bool { return SDL_WaitForGPUIdle(device) }
+cfunc CreateGPUShader(device *byte, info *byte) *byte { return SDL_CreateGPUShader(device, info) }
+cfunc ReleaseGPUShader(device *byte, shader *byte) { SDL_ReleaseGPUShader(device, shader) }
+cfunc CreateGPUGraphicsPipeline(device *byte, info *byte) *byte {
+    return SDL_CreateGPUGraphicsPipeline(device, info)
+}
+cfunc ReleaseGPUGraphicsPipeline(device *byte, pipeline *byte) {
+    SDL_ReleaseGPUGraphicsPipeline(device, pipeline)
+}
+cfunc BeginGPURenderPass(commandBuffer *byte, colors *byte, colorCount uint32, depth *byte) *byte {
+    return SDL_BeginGPURenderPass(commandBuffer, colors, colorCount, depth)
+}
+cfunc BindGPUGraphicsPipeline(renderPass *byte, pipeline *byte) {
+    SDL_BindGPUGraphicsPipeline(renderPass, pipeline)
+}
+cfunc DrawGPUPrimitives(renderPass *byte, vertexCount uint32, instanceCount uint32, firstVertex uint32, firstInstance uint32) {
+    SDL_DrawGPUPrimitives(renderPass, vertexCount, instanceCount, firstVertex, firstInstance)
+}
+cfunc EndGPURenderPass(renderPass *byte) { SDL_EndGPURenderPass(renderPass) }
 cfunc CreateRenderer(window *byte, name *byte) *byte {
     return SDL_CreateRenderer(window, cstring(name))
 }

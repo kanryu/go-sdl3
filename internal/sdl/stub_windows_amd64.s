@@ -304,6 +304,134 @@ TEXT ·_hike_WaitForGPUIdle(SB), 0, $32-16
     MOVQ AX, ret+8(FP)
     RET
 
+// CreateGPUShader (passthrough: false)
+TEXT ·_hike_CreateGPUShader(SB), 0, $32-24
+    MOVQ device+0(FP), CX
+    MOVQ info+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_CreateGPUShader(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+16(FP)
+    RET
+
+// ReleaseGPUShader (passthrough: false)
+TEXT ·_hike_ReleaseGPUShader(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ shader+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_ReleaseGPUShader(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
+// CreateGPUGraphicsPipeline (passthrough: false)
+TEXT ·_hike_CreateGPUGraphicsPipeline(SB), 0, $32-24
+    MOVQ device+0(FP), CX
+    MOVQ info+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_CreateGPUGraphicsPipeline(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+16(FP)
+    RET
+
+// ReleaseGPUGraphicsPipeline (passthrough: false)
+TEXT ·_hike_ReleaseGPUGraphicsPipeline(SB), 0, $32-16
+    MOVQ device+0(FP), CX
+    MOVQ pipeline+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_ReleaseGPUGraphicsPipeline(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
+// BeginGPURenderPass (passthrough: false)
+TEXT ·_hike_BeginGPURenderPass(SB), 0, $32-40
+    MOVQ commandBuffer+0(FP), CX
+    MOVQ colors+8(FP), DX
+    MOVQ colorCount+16(FP), R8
+    MOVQ depth+24(FP), R9
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_BeginGPURenderPass(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    MOVQ AX, ret+32(FP)
+    RET
+
+// BindGPUGraphicsPipeline (passthrough: false)
+TEXT ·_hike_BindGPUGraphicsPipeline(SB), 0, $32-16
+    MOVQ renderPass+0(FP), CX
+    MOVQ pipeline+8(FP), DX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_BindGPUGraphicsPipeline(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
+// DrawGPUPrimitives (passthrough: false)
+TEXT ·_hike_DrawGPUPrimitives(SB), 0, $32-40
+    MOVQ renderPass+0(FP), CX
+    MOVQ vertexCount+8(FP), DX
+    MOVQ instanceCount+16(FP), R8
+    MOVQ firstVertex+24(FP), R9
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    MOVQ firstInstance+32(FP), AX
+    MOVQ AX, 32(SP)
+    CALL c_DrawGPUPrimitives(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
+// EndGPURenderPass (passthrough: false)
+TEXT ·_hike_EndGPURenderPass(SB), 0, $32-8
+    MOVQ renderPass+0(FP), CX
+    MOVQ SP, R11
+    ANDQ $15, R11
+    SUBQ R11, SP
+    SUBQ $48, SP
+    MOVQ R11, 40(SP)
+    CALL c_EndGPURenderPass(SB)
+    MOVQ 40(SP), R11
+    ADDQ $48, SP
+    ADDQ R11, SP
+    RET
+
 // CreateRenderer (passthrough: false)
 TEXT ·_hike_CreateRenderer(SB), 0, $32-24
     MOVQ window+0(FP), CX
@@ -718,6 +846,54 @@ TEXT ·_hike_WaitForGPUSwapchainPtr(SB), NOSPLIT, $0-8
 // _hike_WaitForGPUIdlePtr: address of c_WaitForGPUIdle
 TEXT ·_hike_WaitForGPUIdlePtr(SB), NOSPLIT, $0-8
     LEAQ c_WaitForGPUIdle(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_CreateGPUShaderPtr: address of c_CreateGPUShader
+TEXT ·_hike_CreateGPUShaderPtr(SB), NOSPLIT, $0-8
+    LEAQ c_CreateGPUShader(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_ReleaseGPUShaderPtr: address of c_ReleaseGPUShader
+TEXT ·_hike_ReleaseGPUShaderPtr(SB), NOSPLIT, $0-8
+    LEAQ c_ReleaseGPUShader(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_CreateGPUGraphicsPipelinePtr: address of c_CreateGPUGraphicsPipeline
+TEXT ·_hike_CreateGPUGraphicsPipelinePtr(SB), NOSPLIT, $0-8
+    LEAQ c_CreateGPUGraphicsPipeline(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_ReleaseGPUGraphicsPipelinePtr: address of c_ReleaseGPUGraphicsPipeline
+TEXT ·_hike_ReleaseGPUGraphicsPipelinePtr(SB), NOSPLIT, $0-8
+    LEAQ c_ReleaseGPUGraphicsPipeline(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_BeginGPURenderPassPtr: address of c_BeginGPURenderPass
+TEXT ·_hike_BeginGPURenderPassPtr(SB), NOSPLIT, $0-8
+    LEAQ c_BeginGPURenderPass(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_BindGPUGraphicsPipelinePtr: address of c_BindGPUGraphicsPipeline
+TEXT ·_hike_BindGPUGraphicsPipelinePtr(SB), NOSPLIT, $0-8
+    LEAQ c_BindGPUGraphicsPipeline(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_DrawGPUPrimitivesPtr: address of c_DrawGPUPrimitives
+TEXT ·_hike_DrawGPUPrimitivesPtr(SB), NOSPLIT, $0-8
+    LEAQ c_DrawGPUPrimitives(SB), AX
+    MOVQ AX, ret+0(FP)
+    RET
+
+// _hike_EndGPURenderPassPtr: address of c_EndGPURenderPass
+TEXT ·_hike_EndGPURenderPassPtr(SB), NOSPLIT, $0-8
+    LEAQ c_EndGPURenderPass(SB), AX
     MOVQ AX, ret+0(FP)
     RET
 

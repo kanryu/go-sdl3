@@ -508,6 +508,49 @@ func WaitForGPUIdle(device *byte) bool {
 	return r1 != 0
 }
 
+// CreateGPUShader: generated from the Hike cfunc signature
+func CreateGPUShader(device *byte, info *byte) *byte {
+	r1, _, _ := syscall.SyscallN(_hike_CreateGPUShaderPtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(info)))
+	return (*byte)(unsafe.Pointer(r1))
+}
+
+// ReleaseGPUShader: generated from the Hike cfunc signature
+func ReleaseGPUShader(device *byte, shader *byte) {
+	_, _, _ = syscall.SyscallN(_hike_ReleaseGPUShaderPtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(shader)))
+}
+
+// CreateGPUGraphicsPipeline: generated from the Hike cfunc signature
+func CreateGPUGraphicsPipeline(device *byte, info *byte) *byte {
+	r1, _, _ := syscall.SyscallN(_hike_CreateGPUGraphicsPipelinePtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(info)))
+	return (*byte)(unsafe.Pointer(r1))
+}
+
+// ReleaseGPUGraphicsPipeline: generated from the Hike cfunc signature
+func ReleaseGPUGraphicsPipeline(device *byte, pipeline *byte) {
+	_, _, _ = syscall.SyscallN(_hike_ReleaseGPUGraphicsPipelinePtr(), uintptr(unsafe.Pointer(device)), uintptr(unsafe.Pointer(pipeline)))
+}
+
+// BeginGPURenderPass: generated from the Hike cfunc signature
+func BeginGPURenderPass(commandBuffer *byte, colors *byte, colorCount uint32, depth *byte) *byte {
+	r1, _, _ := syscall.SyscallN(_hike_BeginGPURenderPassPtr(), uintptr(unsafe.Pointer(commandBuffer)), uintptr(unsafe.Pointer(colors)), uintptr(colorCount), uintptr(unsafe.Pointer(depth)))
+	return (*byte)(unsafe.Pointer(r1))
+}
+
+// BindGPUGraphicsPipeline: generated from the Hike cfunc signature
+func BindGPUGraphicsPipeline(renderPass *byte, pipeline *byte) {
+	_, _, _ = syscall.SyscallN(_hike_BindGPUGraphicsPipelinePtr(), uintptr(unsafe.Pointer(renderPass)), uintptr(unsafe.Pointer(pipeline)))
+}
+
+// DrawGPUPrimitives: generated from the Hike cfunc signature
+func DrawGPUPrimitives(renderPass *byte, vertexCount uint32, instanceCount uint32, firstVertex uint32, firstInstance uint32) {
+	_, _, _ = syscall.SyscallN(_hike_DrawGPUPrimitivesPtr(), uintptr(unsafe.Pointer(renderPass)), uintptr(vertexCount), uintptr(instanceCount), uintptr(firstVertex), uintptr(firstInstance))
+}
+
+// EndGPURenderPass: generated from the Hike cfunc signature
+func EndGPURenderPass(renderPass *byte) {
+	_, _, _ = syscall.SyscallN(_hike_EndGPURenderPassPtr(), uintptr(unsafe.Pointer(renderPass)))
+}
+
 // CreateRenderer: generated from the Hike cfunc signature
 func CreateRenderer(window *byte, name *byte) *byte {
 	r1, _, _ := syscall.SyscallN(_hike_CreateRendererPtr(), uintptr(unsafe.Pointer(window)), uintptr(unsafe.Pointer(name)))
@@ -660,6 +703,22 @@ func _hike_WaitForGPUSwapchain(device *byte, window *byte) bool
 func _hike_WaitForGPUSwapchainPtr() uintptr
 func _hike_WaitForGPUIdle(device *byte) bool
 func _hike_WaitForGPUIdlePtr() uintptr
+func _hike_CreateGPUShader(device *byte, info *byte) *byte
+func _hike_CreateGPUShaderPtr() uintptr
+func _hike_ReleaseGPUShader(device *byte, shader *byte)
+func _hike_ReleaseGPUShaderPtr() uintptr
+func _hike_CreateGPUGraphicsPipeline(device *byte, info *byte) *byte
+func _hike_CreateGPUGraphicsPipelinePtr() uintptr
+func _hike_ReleaseGPUGraphicsPipeline(device *byte, pipeline *byte)
+func _hike_ReleaseGPUGraphicsPipelinePtr() uintptr
+func _hike_BeginGPURenderPass(commandBuffer *byte, colors *byte, colorCount uint32, depth *byte) *byte
+func _hike_BeginGPURenderPassPtr() uintptr
+func _hike_BindGPUGraphicsPipeline(renderPass *byte, pipeline *byte)
+func _hike_BindGPUGraphicsPipelinePtr() uintptr
+func _hike_DrawGPUPrimitives(renderPass *byte, vertexCount uint32, instanceCount uint32, firstVertex uint32, firstInstance uint32)
+func _hike_DrawGPUPrimitivesPtr() uintptr
+func _hike_EndGPURenderPass(renderPass *byte)
+func _hike_EndGPURenderPassPtr() uintptr
 func _hike_CreateRenderer(window *byte, name *byte) *byte
 func _hike_CreateRendererPtr() uintptr
 func _hike_RenderGeometry(renderer *byte, texture *byte, vertices *byte, vertexCount int, indices *byte, indexCount int) bool
