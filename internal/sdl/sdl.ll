@@ -1,6 +1,6 @@
 ; ModuleID = 'main'
 source_filename = "main.hike"
-target triple = "x86_64-w64-windows-gnu"
+target triple = "x86_64-unknown-linux-gnu"
 
 ; ==============================================================================
 ; Hike Language Builtin Runtime (LLVM IR)
@@ -17,7 +17,6 @@ declare i64 @fwrite(i8*, i64, i64, i8*)
 declare i64 @fread(i8*, i64, i64, i8*)
 declare i32 @fclose(i8*)
 declare i64 @fseek(i8*, i64, i64)
-declare i64 @_ftelli64(i8*)
 
 @__hike_mapped_write_mode = private unnamed_addr constant [3 x i8] c"wb\00"
 @__hike_mapped_read_mode = private unnamed_addr constant [3 x i8] c"rb\00"
@@ -67,7 +66,7 @@ entry:
   br i1 %missing, label %fail, label %measure
 measure:
   %end_result = call i64 @fseek(i8* %file, i64 0, i64 2)
-  %file_size = call i64 @_ftelli64(i8* %file)
+  %file_size = call i64 @__hike_file_tell(i8* %file)
   %payload_start = add i64 %root_size, 64
   %payload_size = sub i64 %file_size, %payload_start
   %header = alloca [64 x i8], align 8
@@ -2946,61 +2945,185 @@ entry:
 
 attributes #0 = { noinline nounwind "no-builtins" }
 
-; Hike native Windows OS runtime (64-bit, pointer=i8*)
+; Hike native Linux OS runtime (64-bit)
 
-declare i32 @QueueUserWorkItem(i32 (i8*)*, i8*, i32)
-declare i8* @CreateEventA(i8*, i32, i32, i8*)
-declare i32 @SetEvent(i8*)
-declare i32 @WaitForSingleObject(i8*, i32)
-declare i32 @CloseHandle(i8*)
-declare void @Sleep(i32)
-declare i64 @GetTickCount64()
-declare i8* @GetStdHandle(i32)
-declare i32 @WriteFile(i8*, i8*, i32, i32*, i8*)
+declare i64 @ftello64(i8*)
+
+define internal i64 @__hike_file_tell(i8* %file) {
+entry:
+  %position = call i64 @ftello64(i8* %file)
+  ret i64 %position
+}
+
+declare i32 @pthread_create(i64*, i8*, i8* (i8*)*, i8*)
+declare i32 @pthread_mutex_init(i8*, i8*)
+declare i32 @pthread_mutex_lock(i8*)
+declare i32 @pthread_mutex_unlock(i8*)
+declare i32 @pthread_cond_init(i8*, i8*)
+declare i32 @pthread_cond_wait(i8*, i8*)
+declare i32 @pthread_cond_timedwait(i8*, i8*, i8*)
+declare i32 @pthread_cond_signal(i8*)
+declare i32 @pthread_mutex_destroy(i8*)
+declare i32 @pthread_cond_destroy(i8*)
+declare i32 @clock_gettime(i32, i8*)
+declare i32 @nanosleep(i8*, i8*)
+declare i64 @write(i32, i8*, i64)
 
 define void @__hike_stderr_write(i8* %data, i32 %length) {
 entry:
-  %handle = call i8* @GetStdHandle(i32 -12)
-  %written = alloca i32, align 4
-  call i32 @WriteFile(i8* %handle, i8* %data, i32 %length, i32* %written, i8* null)
+
+  %length_native = zext i32 %length to i64
+
+  call i64 @write(i32 2, i8* %data, i64 %length_native)
   ret void
 }
 
+%struct.__hike_linux_event = type { [40 x i8], [48 x i8], i32 }
+
 define internal i32 @hike_thread_spawn(i32 (i8*)* %fn, i8* %param) {
 entry:
-  %r = call i32 @QueueUserWorkItem(i32 (i8*)* %fn, i8* %param, i32 0)
+  %tid = alloca i64, align 8
+  %start = bitcast i32 (i8*)* %fn to i8* (i8*)*
+  %r = call i32 @pthread_create(i64* %tid, i8* null, i8* (i8*)* %start, i8* %param)
   ret i32 %r
 }
+
 define internal i8* @hike_event_create() {
 entry:
-  %r = call i8* @CreateEventA(i8* null, i32 0, i32 0, i8* null)
-  ret i8* %r
+  %raw = call i8* @malloc(i64 96)
+  %ev = bitcast i8* %raw to %struct.__hike_linux_event*
+  %mp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 0
+  %cp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 1
+  %m = bitcast [40 x i8]* %mp to i8*
+  %c = bitcast [48 x i8]* %cp to i8*
+  call i32 @pthread_mutex_init(i8* %m, i8* null)
+  call i32 @pthread_cond_init(i8* %c, i8* null)
+  %state = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 2
+  store i32 0, i32* %state
+  ret i8* %raw
 }
-define internal i32 @hike_event_signal(i8* %ev) {
+
+define internal i32 @hike_event_signal(i8* %raw) {
 entry:
-  %r = call i32 @SetEvent(i8* %ev)
-  ret i32 %r
+  %ev = bitcast i8* %raw to %struct.__hike_linux_event*
+  %mp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 0
+  %cp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 1
+  %m = bitcast [40 x i8]* %mp to i8*
+  %c = bitcast [48 x i8]* %cp to i8*
+  %state = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 2
+  call i32 @pthread_mutex_lock(i8* %m)
+  store i32 1, i32* %state
+  call i32 @pthread_cond_signal(i8* %c)
+  call i32 @pthread_mutex_unlock(i8* %m)
+  ret i32 0
 }
-define internal i32 @hike_event_wait(i8* %ev, i32 %timeout) {
+
+define internal i32 @hike_event_wait(i8* %raw, i32 %timeout) {
 entry:
-  %r = call i32 @WaitForSingleObject(i8* %ev, i32 %timeout)
-  ret i32 %r
+  %ev = bitcast i8* %raw to %struct.__hike_linux_event*
+  %mp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 0
+  %cp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 1
+  %m = bitcast [40 x i8]* %mp to i8*
+  %c = bitcast [48 x i8]* %cp to i8*
+  %state = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 2
+  %ts = alloca [16 x i8], align 8
+  %ts_ptr = bitcast [16 x i8]* %ts to i8*
+  call i32 @pthread_mutex_lock(i8* %m)
+  %infinite = icmp eq i32 %timeout, -1
+  br i1 %infinite, label %check, label %prepare_deadline
+prepare_deadline:
+  %sec = bitcast [16 x i8]* %ts to i64*
+  %nsec = getelementptr i64, i64* %sec, i32 1
+  %clock_result = call i32 @clock_gettime(i32 0, i8* %ts_ptr)
+  %now_sec = load i64, i64* %sec
+  %now_nsec = load i64, i64* %nsec
+  %timeout_sec = udiv i32 %timeout, 1000
+  %timeout_ms = urem i32 %timeout, 1000
+  %timeout_sec64 = zext i32 %timeout_sec to i64
+  %timeout_ns = mul i32 %timeout_ms, 1000000
+  %timeout_ns64 = zext i32 %timeout_ns to i64
+  %deadline_sec_raw = add i64 %now_sec, %timeout_sec64
+  %deadline_nsec_raw = add i64 %now_nsec, %timeout_ns64
+  %needs_normalize = icmp uge i64 %deadline_nsec_raw, 1000000000
+  %deadline_nsec_normalized = sub i64 %deadline_nsec_raw, 1000000000
+  %deadline_sec_normalized = add i64 %deadline_sec_raw, 1
+  %deadline_nsec = select i1 %needs_normalize, i64 %deadline_nsec_normalized, i64 %deadline_nsec_raw
+  %deadline_sec = select i1 %needs_normalize, i64 %deadline_sec_normalized, i64 %deadline_sec_raw
+  store i64 %deadline_sec, i64* %sec
+  store i64 %deadline_nsec, i64* %nsec
+  br label %check
+check:
+  %ready = load i32, i32* %state
+  %has = icmp ne i32 %ready, 0
+  br i1 %has, label %done, label %wait
+wait:
+  br i1 %infinite, label %wait_infinite, label %wait_timed
+wait_infinite:
+  %wait_result = call i32 @pthread_cond_wait(i8* %c, i8* %m)
+  br label %check
+wait_timed:
+  %timed_result = call i32 @pthread_cond_timedwait(i8* %c, i8* %m, i8* %ts_ptr)
+  %timed_ok = icmp eq i32 %timed_result, 0
+  br i1 %timed_ok, label %check, label %timed_done
+timed_done:
+  call i32 @pthread_mutex_unlock(i8* %m)
+  ret i32 %timed_result
+done:
+  store i32 0, i32* %state
+  call i32 @pthread_mutex_unlock(i8* %m)
+  ret i32 0
 }
-define internal i32 @hike_event_destroy(i8* %ev) {
+
+define internal i32 @hike_event_destroy(i8* %raw) {
 entry:
-  %r = call i32 @CloseHandle(i8* %ev)
-  ret i32 %r
+  %ev = bitcast i8* %raw to %struct.__hike_linux_event*
+  %mp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 0
+  %cp = getelementptr %struct.__hike_linux_event, %struct.__hike_linux_event* %ev, i32 0, i32 1
+  %m = bitcast [40 x i8]* %mp to i8*
+  %c = bitcast [48 x i8]* %cp to i8*
+  call i32 @pthread_mutex_destroy(i8* %m)
+  call i32 @pthread_cond_destroy(i8* %c)
+  call void @free(i8* %raw)
+  ret i32 0
 }
+
 define internal void @hike_sleep_ms(i32 %ms) {
 entry:
-  call void @Sleep(i32 %ms)
+  %ts = alloca [16 x i8], align 8
+  %sec = bitcast [16 x i8]* %ts to i64*
+  %nsec = getelementptr i64, i64* %sec, i32 1
+  %s = udiv i32 %ms, 1000
+  %r = urem i32 %ms, 1000
+  %ns = mul i32 %r, 1000000
+  %s64 = zext i32 %s to i64
+  %ns64 = zext i32 %ns to i64
+  store i64 %s64, i64* %sec
+  store i64 %ns64, i64* %nsec
+  %p = bitcast [16 x i8]* %ts to i8*
+  call i32 @nanosleep(i8* %p, i8* null)
   ret void
 }
+
 define internal i64 @hike_now_ns() {
 entry:
-  %ms = call i64 @GetTickCount64()
-  %ns = mul i64 %ms, 1000000
-  ret i64 %ns
+  %ts = alloca [16 x i8], align 8
+  %p = bitcast [16 x i8]* %ts to i8*
+  call i32 @clock_gettime(i32 1, i8* %p)
+  %sec = bitcast [16 x i8]* %ts to i64*
+  %nsec = getelementptr i64, i64* %sec, i32 1
+  %s = load i64, i64* %sec
+  %ns = load i64, i64* %nsec
+  %s_ns = mul i64 %s, 1000000000
+  %total = add i64 %s_ns, %ns
+  ret i64 %total
+}
+
+; Compatibility entry point for Hike programs that bind the platform Sleep API.
+define void @Sleep(i64 %ms) {
+entry:
+  %ms32 = trunc i64 %ms to i32
+  call void @hike_sleep_ms(i32 %ms32)
+  ret void
 }
 
 
@@ -4294,7 +4417,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @Init(i64 %arg_0.1) {
+define i1 @Init(i64 %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_Init(i64 %arg_0.1)
   ret i1 %v2
@@ -4331,7 +4454,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @SetAppMetadata(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3) {
+define i1 @SetAppMetadata(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3) {
 structured.entry.0:
   %v4 = call i1 @__hike_impl_SetAppMetadata(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3)
   ret i1 %v4
@@ -4371,7 +4494,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @CreateWindow(i8* %arg_0.1, i64 %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
+define i8* @CreateWindow(i8* %arg_0.1, i64 %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
 structured.entry.0:
   %v5 = call i8* @__hike_impl_CreateWindow(i8* %arg_0.1, i64 %arg_1.2, i64 %arg_2.3, i64 %arg_3.4)
   ret i8* %v5
@@ -4402,7 +4525,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i64 @GetWindowFlags(i8* %arg_0.1) {
+define i64 @GetWindowFlags(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i64 @__hike_impl_GetWindowFlags(i8* %arg_0.1)
   ret i64 %v2
@@ -4436,7 +4559,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @SetWindowResizable(i8* %arg_0.1, i1 %arg_1.2) {
+define i1 @SetWindowResizable(i8* %arg_0.1, i1 %arg_1.2) {
 structured.entry.0:
   %v3 = call i1 @__hike_impl_SetWindowResizable(i8* %arg_0.1, i1 %arg_1.2)
   ret i1 %v3
@@ -4473,7 +4596,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @CreateGPUDevice(i64 %arg_0.1, i1 %arg_1.2, i8* %arg_2.3) {
+define i8* @CreateGPUDevice(i64 %arg_0.1, i1 %arg_1.2, i8* %arg_2.3) {
 structured.entry.0:
   %v4 = call i8* @__hike_impl_CreateGPUDevice(i64 %arg_0.1, i1 %arg_1.2, i8* %arg_2.3)
   ret i8* %v4
@@ -4504,7 +4627,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @DestroyGPUDevice(i8* %arg_0.1) {
+define void @DestroyGPUDevice(i8* %arg_0.1) {
 structured.entry.0:
   call void @__hike_impl_DestroyGPUDevice(i8* %arg_0.1)
   ret void
@@ -4538,7 +4661,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @ClaimWindowForGPUDevice(i8* %arg_0.1, i8* %arg_1.2) {
+define i1 @ClaimWindowForGPUDevice(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   %v3 = call i1 @__hike_impl_ClaimWindowForGPUDevice(i8* %arg_0.1, i8* %arg_1.2)
   ret i1 %v3
@@ -4572,7 +4695,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @ReleaseWindowFromGPUDevice(i8* %arg_0.1, i8* %arg_1.2) {
+define void @ReleaseWindowFromGPUDevice(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   call void @__hike_impl_ReleaseWindowFromGPUDevice(i8* %arg_0.1, i8* %arg_1.2)
   ret void
@@ -4603,7 +4726,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @AcquireGPUCommandBuffer(i8* %arg_0.1) {
+define i8* @AcquireGPUCommandBuffer(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i8* @__hike_impl_AcquireGPUCommandBuffer(i8* %arg_0.1)
   ret i8* %v2
@@ -4646,7 +4769,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @AcquireGPUSwapchainTexture(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i8* %arg_3.4, i8* %arg_4.5) {
+define i1 @AcquireGPUSwapchainTexture(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i8* %arg_3.4, i8* %arg_4.5) {
 structured.entry.0:
   %v6 = call i1 @__hike_impl_AcquireGPUSwapchainTexture(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i8* %arg_3.4, i8* %arg_4.5)
   ret i1 %v6
@@ -4677,7 +4800,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @SubmitGPUCommandBuffer(i8* %arg_0.1) {
+define i1 @SubmitGPUCommandBuffer(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_SubmitGPUCommandBuffer(i8* %arg_0.1)
   ret i1 %v2
@@ -4708,7 +4831,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @CancelGPUCommandBuffer(i8* %arg_0.1) {
+define i1 @CancelGPUCommandBuffer(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_CancelGPUCommandBuffer(i8* %arg_0.1)
   ret i1 %v2
@@ -4748,7 +4871,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @SetGPUSwapchainParameters(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
+define i1 @SetGPUSwapchainParameters(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
 structured.entry.0:
   %v5 = call i1 @__hike_impl_SetGPUSwapchainParameters(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3, i64 %arg_3.4)
   ret i1 %v5
@@ -4779,7 +4902,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @GetGPUDeviceDriver(i8* %arg_0.1) {
+define i8* @GetGPUDeviceDriver(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i8* @__hike_impl_GetGPUDeviceDriver(i8* %arg_0.1)
   ret i8* %v2
@@ -4810,7 +4933,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i64 @GetGPUShaderFormats(i8* %arg_0.1) {
+define i64 @GetGPUShaderFormats(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i64 @__hike_impl_GetGPUShaderFormats(i8* %arg_0.1)
   ret i64 %v2
@@ -4844,7 +4967,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i64 @GetGPUSwapchainTextureFormat(i8* %arg_0.1, i8* %arg_1.2) {
+define i64 @GetGPUSwapchainTextureFormat(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   %v3 = call i64 @__hike_impl_GetGPUSwapchainTextureFormat(i8* %arg_0.1, i8* %arg_1.2)
   ret i64 %v3
@@ -4878,7 +5001,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @WaitForGPUSwapchain(i8* %arg_0.1, i8* %arg_1.2) {
+define i1 @WaitForGPUSwapchain(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   %v3 = call i1 @__hike_impl_WaitForGPUSwapchain(i8* %arg_0.1, i8* %arg_1.2)
   ret i1 %v3
@@ -4909,7 +5032,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @WaitForGPUIdle(i8* %arg_0.1) {
+define i1 @WaitForGPUIdle(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_WaitForGPUIdle(i8* %arg_0.1)
   ret i1 %v2
@@ -4943,7 +5066,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @CreateGPUShader(i8* %arg_0.1, i8* %arg_1.2) {
+define i8* @CreateGPUShader(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   %v3 = call i8* @__hike_impl_CreateGPUShader(i8* %arg_0.1, i8* %arg_1.2)
   ret i8* %v3
@@ -4977,7 +5100,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @ReleaseGPUShader(i8* %arg_0.1, i8* %arg_1.2) {
+define void @ReleaseGPUShader(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   call void @__hike_impl_ReleaseGPUShader(i8* %arg_0.1, i8* %arg_1.2)
   ret void
@@ -5011,7 +5134,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @CreateGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2) {
+define i8* @CreateGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   %v3 = call i8* @__hike_impl_CreateGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2)
   ret i8* %v3
@@ -5045,7 +5168,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @ReleaseGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2) {
+define void @ReleaseGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   call void @__hike_impl_ReleaseGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2)
   ret void
@@ -5085,7 +5208,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @BeginGPURenderPass(i8* %arg_0.1, i8* %arg_1.2, i32 %arg_2.3, i8* %arg_3.4) {
+define i8* @BeginGPURenderPass(i8* %arg_0.1, i8* %arg_1.2, i32 %arg_2.3, i8* %arg_3.4) {
 structured.entry.0:
   %v5 = call i8* @__hike_impl_BeginGPURenderPass(i8* %arg_0.1, i8* %arg_1.2, i32 %arg_2.3, i8* %arg_3.4)
   ret i8* %v5
@@ -5119,7 +5242,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @BindGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2) {
+define void @BindGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   call void @__hike_impl_BindGPUGraphicsPipeline(i8* %arg_0.1, i8* %arg_1.2)
   ret void
@@ -5162,7 +5285,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @DrawGPUPrimitives(i8* %arg_0.1, i32 %arg_1.2, i32 %arg_2.3, i32 %arg_3.4, i32 %arg_4.5) {
+define void @DrawGPUPrimitives(i8* %arg_0.1, i32 %arg_1.2, i32 %arg_2.3, i32 %arg_3.4, i32 %arg_4.5) {
 structured.entry.0:
   call void @__hike_impl_DrawGPUPrimitives(i8* %arg_0.1, i32 %arg_1.2, i32 %arg_2.3, i32 %arg_3.4, i32 %arg_4.5)
   ret void
@@ -5193,7 +5316,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @EndGPURenderPass(i8* %arg_0.1) {
+define void @EndGPURenderPass(i8* %arg_0.1) {
 structured.entry.0:
   call void @__hike_impl_EndGPURenderPass(i8* %arg_0.1)
   ret void
@@ -5227,7 +5350,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @CreateRenderer(i8* %arg_0.1, i8* %arg_1.2) {
+define i8* @CreateRenderer(i8* %arg_0.1, i8* %arg_1.2) {
 structured.entry.0:
   %v3 = call i8* @__hike_impl_CreateRenderer(i8* %arg_0.1, i8* %arg_1.2)
   ret i8* %v3
@@ -5273,7 +5396,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @RenderGeometry(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i64 %arg_3.4, i8* %arg_4.5, i64 %arg_5.6) {
+define i1 @RenderGeometry(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i64 %arg_3.4, i8* %arg_4.5, i64 %arg_5.6) {
 structured.entry.0:
   %v7 = call i1 @__hike_impl_RenderGeometry(i8* %arg_0.1, i8* %arg_1.2, i8* %arg_2.3, i64 %arg_3.4, i8* %arg_4.5, i64 %arg_5.6)
   ret i1 %v7
@@ -5313,7 +5436,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @SetRenderLogicalPresentation(i8* %arg_0.1, i64 %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
+define i1 @SetRenderLogicalPresentation(i8* %arg_0.1, i64 %arg_1.2, i64 %arg_2.3, i64 %arg_3.4) {
 structured.entry.0:
   %v5 = call i1 @__hike_impl_SetRenderLogicalPresentation(i8* %arg_0.1, i64 %arg_1.2, i64 %arg_2.3, i64 %arg_3.4)
   ret i1 %v5
@@ -5356,7 +5479,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @SetRenderDrawColor(i8* %arg_0.1, i8 %arg_1.2, i8 %arg_2.3, i8 %arg_3.4, i8 %arg_4.5) {
+define i1 @SetRenderDrawColor(i8* %arg_0.1, i8 %arg_1.2, i8 %arg_2.3, i8 %arg_3.4, i8 %arg_4.5) {
 structured.entry.0:
   %v6 = call i1 @__hike_impl_SetRenderDrawColor(i8* %arg_0.1, i8 %arg_1.2, i8 %arg_2.3, i8 %arg_3.4, i8 %arg_4.5)
   ret i1 %v6
@@ -5387,7 +5510,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @RenderClear(i8* %arg_0.1) {
+define i1 @RenderClear(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_RenderClear(i8* %arg_0.1)
   ret i1 %v2
@@ -5430,7 +5553,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @RenderLine(i8* %arg_0.1, float %arg_1.2, float %arg_2.3, float %arg_3.4, float %arg_4.5) {
+define i1 @RenderLine(i8* %arg_0.1, float %arg_1.2, float %arg_2.3, float %arg_3.4, float %arg_4.5) {
 structured.entry.0:
   %v6 = call i1 @__hike_impl_RenderLine(i8* %arg_0.1, float %arg_1.2, float %arg_2.3, float %arg_3.4, float %arg_4.5)
   ret i1 %v6
@@ -5467,7 +5590,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @RenderLines(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3) {
+define i1 @RenderLines(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3) {
 structured.entry.0:
   %v4 = call i1 @__hike_impl_RenderLines(i8* %arg_0.1, i8* %arg_1.2, i64 %arg_2.3)
   ret i1 %v4
@@ -5498,7 +5621,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @RenderPresent(i8* %arg_0.1) {
+define i1 @RenderPresent(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_RenderPresent(i8* %arg_0.1)
   ret i1 %v2
@@ -5529,7 +5652,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @PollEvent(i8* %arg_0.1) {
+define i1 @PollEvent(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_PollEvent(i8* %arg_0.1)
   ret i1 %v2
@@ -5560,7 +5683,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i32 @Rand(i32 %arg_0.1) {
+define i32 @Rand(i32 %arg_0.1) {
 structured.entry.0:
   %v2 = call i32 @__hike_impl_Rand(i32 %arg_0.1)
   ret i32 %v2
@@ -5591,7 +5714,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport float @Cos(float %arg_0.1) {
+define float @Cos(float %arg_0.1) {
 structured.entry.0:
   %v2 = call float @__hike_impl_Cos(float %arg_0.1)
   ret float %v2
@@ -5622,7 +5745,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport float @Sin(float %arg_0.1) {
+define float @Sin(float %arg_0.1) {
 structured.entry.0:
   %v2 = call float @__hike_impl_Sin(float %arg_0.1)
   ret float %v2
@@ -5650,7 +5773,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @GetError() {
+define i8* @GetError() {
 structured.entry.0:
   %v1 = call i8* @__hike_impl_GetError()
   ret i8* %v1
@@ -5681,7 +5804,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @DestroyRenderer(i8* %arg_0.1) {
+define void @DestroyRenderer(i8* %arg_0.1) {
 structured.entry.0:
   call void @__hike_impl_DestroyRenderer(i8* %arg_0.1)
   ret void
@@ -5712,7 +5835,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @DestroyWindow(i8* %arg_0.1) {
+define void @DestroyWindow(i8* %arg_0.1) {
 structured.entry.0:
   call void @__hike_impl_DestroyWindow(i8* %arg_0.1)
   ret void
@@ -5740,7 +5863,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport void @Quit() {
+define void @Quit() {
 structured.entry.0:
   call void @__hike_impl_Quit()
   ret void
@@ -5771,7 +5894,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @StartTextInput(i8* %arg_0.1) {
+define i1 @StartTextInput(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_StartTextInput(i8* %arg_0.1)
   ret i1 %v2
@@ -5802,7 +5925,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i1 @StopTextInput(i8* %arg_0.1) {
+define i1 @StopTextInput(i8* %arg_0.1) {
 structured.entry.0:
   %v2 = call i1 @__hike_impl_StopTextInput(i8* %arg_0.1)
   ret i1 %v2
@@ -5833,7 +5956,7 @@ structured.block.end.4:
   br label %structured.block.end.1
 }
 
-define dllexport i8* @GetKeyName(i64 %arg_0.1) {
+define i8* @GetKeyName(i64 %arg_0.1) {
 structured.entry.0:
   %v2 = call i8* @__hike_impl_GetKeyName(i64 %arg_0.1)
   ret i8* %v2
@@ -5846,4 +5969,3 @@ structured.after.return.3:
 structured.block.end.4:
   br label %structured.block.end.1
 }
-

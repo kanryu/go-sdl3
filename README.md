@@ -118,6 +118,19 @@ cmake --build build/sdl-debug --target SDL3-static
 The Release configuration uses the same options with
 `-DCMAKE_BUILD_TYPE=Release` and `build/sdl-release`.
 
+On Linux, build a Debug shared library in a separate directory so the
+existing static-library build directories remain unchanged:
+
+```sh
+cmake -S third_party/SDL -B third_party/SDL/build/sdl-debug-shared -G Ninja \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DSDL_SHARED=ON -DSDL_STATIC=OFF -DSDL_HIDAPI=OFF
+cmake --build third_party/SDL/build/sdl-debug-shared --target SDL3-shared
+```
+
+The shared library is written to
+`third_party/SDL/build/sdl-debug-shared/libSDL3.so`.
+
 Application builds do not require compiler flags in the example command:
 
 ```powershell
@@ -132,6 +145,19 @@ go run ./examples/event_types
 - `examples/event_types`: typed event dispatch using a Go type switch,
   keyboard input, mouse events, and IME text input.
 - `examples/lines`: SDL renderer line drawing example.
+- `examples/triangle_vulkan`: SDL_GPU Vulkan triangle.
+- `examples/triangle_vulkan_pure_go`: direct Vulkan rendering through
+  pure-Go bindings and the SDL3 shared library, without cgo.
+
+Run the direct Vulkan example from the repository root with:
+
+```sh
+CGO_ENABLED=0 SDL3_LIBRARY=third_party/SDL/build/sdl-debug-shared/libSDL3.so \
+  go run ./examples/triangle_vulkan_pure_go
+```
+
+It also requires the system Vulkan loader (`libvulkan.so.1`) and a Vulkan
+driver that supports dynamic rendering.
 
 ## Verification
 
